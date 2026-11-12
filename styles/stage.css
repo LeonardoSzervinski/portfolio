@@ -1,0 +1,210 @@
+/* Background and the 3D laptop. The scene frame is 1440×810 units and is placed by JS. */
+.stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--sky);
+}
+
+@supports (background: linear-gradient(in oklab 180deg, red, blue)) {
+  .stage {
+    background: var(--sky-oklab);
+  }
+}
+
+/* Soft light pooling behind the laptop in the hero. */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 40% 34% at 50% 80%, rgba(220, 226, 255, .45) 0%, rgba(190, 200, 255, .18) 50%, rgba(190, 200, 255, 0) 100%);
+  opacity: var(--glow, 1);
+}
+
+.scene-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 1440px;
+  height: 810px;
+  transform-origin: 0 0;
+}
+
+/* The open lid sits on the z = 0 plane, so the screen lands exactly on its 2D rect. */
+.laptop {
+  position: absolute;
+  inset: 0;
+  perspective: 4000px;
+  perspective-origin: 720px 560px;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.laptop__shadow {
+  position: absolute;
+  left: 230px;
+  top: 778px;
+  width: 980px;
+  height: 70px;
+  background: radial-gradient(closest-side, rgba(40, 55, 150, .22), rgba(40, 55, 150, 0));
+  filter: blur(10px);
+}
+
+.laptop__deck {
+  position: absolute;
+  left: 200px;
+  top: 752.7px;
+  width: 1040px;
+  height: 680px;
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+  border-radius: 0 0 34px 34px;
+  background: linear-gradient(180deg, #a7adb8 0%, #ccd1d9 35%, #dde1e7 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
+}
+
+.laptop__keyboard {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 5%;
+  height: 50%;
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .07) 0 52px, transparent 52px 58px),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, .07) 0 52px, transparent 52px 60px),
+    #1d2026;
+}
+
+.laptop__trackpad {
+  position: absolute;
+  left: 34%;
+  top: 62%;
+  width: 32%;
+  height: 32%;
+  border-radius: 16px;
+  background: rgba(40, 48, 70, .12);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .4);
+}
+
+.laptop__lip {
+  position: absolute;
+  left: 200px;
+  top: 752.7px;
+  width: 1040px;
+  height: 16px;
+  transform: translateZ(680px);
+  border-radius: 0 0 22px 22px;
+  background: linear-gradient(180deg, #e2e5ea, #9aa1ad);
+}
+
+.laptop__lip::after {
+  content: '';
+  position: absolute;
+  left: 44%;
+  top: 0;
+  width: 12%;
+  height: 6px;
+  border-radius: 0 0 10px 10px;
+  background: rgba(60, 66, 80, .35);
+}
+
+.laptop__lid {
+  position: absolute;
+  left: 244.8px;
+  top: 72.7px;
+  width: 950px;
+  height: 680px;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-89deg);
+}
+
+.laptop__face,
+.laptop__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px 26px 8px 8px;
+  backface-visibility: hidden;
+}
+
+.laptop__face {
+  background: #0e1013;
+  box-shadow: 0 0 0 4px #c6cbd4, inset 0 0 0 1.5px #30343b;
+}
+
+.laptop__camera {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: #26292f;
+  box-shadow: 0 0 0 2px #15171b;
+}
+
+.laptop__back {
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, #e4e7ec 0%, #c3c8d1 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
+}
+
+/* Display inside the lid. */
+.screen {
+  position: absolute;
+  left: 28px;
+  top: 30px;
+  width: 894.4px;
+  height: 604.7px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #000;
+  opacity: 0;
+}
+
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, 0) 38%);
+}
+
+.screen__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.screen__hit {
+  position: absolute;
+  left: 28px;
+  top: 30px;
+  width: 894.4px;
+  height: 604.7px;
+  display: none;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.is-showcase .screen__hit {
+  display: block;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  opacity: 0;
+}

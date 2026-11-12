@@ -1,0 +1,24 @@
+:root {
+  /* palette */
+  --blue-900: #3150c6;
+  --blue-800: #2a3fa8;
+  --blue-700: #4467e0;
+  --blue-100: #dfe6ff;
+  --ink: #0d0f0e;
+  --ink-soft: #141615;
+  --muted: #5b6278;
+  --rule: #c9ceda;
+  --surface-tint: #eef1f8;
+
+  --sky: linear-gradient(180deg, #3150c6 0%, #4467e0 30%, #5d7ef6 50%, #7f97f6 66%, #a9b6f4 78%, #d3cdea 88%, #efd6c6 94%, #f8ddb4 100%);
+  --sky-oklab: linear-gradient(in oklab 180deg, #3150c6 0%, #4467e0 30%, #5d7ef6 50%, #7f97f6 66%, #a9b6f4 78%, #d3cdea 88%, #efd6c6 94%, #f8ddb4 100%);
+
+  /* motion */
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+
+  /* layout values written by ViewportLayout */
+  --n: 1px;            /* viewport unit */
+  --badge-scale: .2;   /* lanyard badge scale */
+  --ticket-height: 180px;
+  --badge-width: calc(250 * var(--n));
+}

@@ -1,0 +1,182 @@
+/* Project ticket, description and previous/next controls. */
+.ticket {
+  position: absolute;
+  right: calc(32 * var(--n));
+  top: calc(98 * var(--n));
+  width: calc(348 * var(--n));
+  height: calc(182 * var(--n));
+  padding: calc(26 * var(--n)) calc(34 * var(--n)) 0 calc(44 * var(--n));
+  border-radius: calc(3 * var(--n));
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 calc(18 * var(--n)) calc(40 * var(--n)) rgba(0, 0, 0, .28);
+  transform-origin: 50% 0;
+  opacity: 0;
+}
+
+.ticket__hole {
+  position: absolute;
+  width: calc(21 * var(--n));
+  height: calc(21 * var(--n));
+  border-radius: 50%;
+  background: var(--blue-800);
+  box-shadow: inset 0 calc(2 * var(--n)) calc(3 * var(--n)) rgba(0, 0, 0, .35);
+}
+
+.ticket__hole:nth-child(1) { left: calc(12 * var(--n)); top: calc(12 * var(--n)); }
+.ticket__hole:nth-child(2) { right: calc(12 * var(--n)); top: calc(12 * var(--n)); }
+.ticket__hole:nth-child(3) { left: calc(12 * var(--n)); bottom: calc(12 * var(--n)); }
+.ticket__hole:nth-child(4) { right: calc(12 * var(--n)); bottom: calc(12 * var(--n)); }
+
+.ticket__title {
+  margin: 0;
+  font-family: 'Anton', Impact, sans-serif;
+  font-size: calc(50 * var(--n));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+
+.ticket__rows {
+  margin: calc(8 * var(--n)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticket__rows li {
+  padding: calc(4 * var(--n)) 0 calc(3 * var(--n));
+  border-bottom: 1.5px dotted #2a2a2a;
+  font-size: calc(12 * var(--n));
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: right;
+}
+
+.project-info {
+  position: absolute;
+  left: calc(28 * var(--n));
+  top: calc(326 * var(--n));
+  width: calc(172 * var(--n));
+}
+
+.project-info > * {
+  opacity: 0;
+}
+
+.project-info__key {
+  font-size: calc(17 * var(--n));
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.project-info__text {
+  margin: calc(14 * var(--n)) 0 0;
+  font-size: calc(15 * var(--n));
+  font-weight: 500;
+  line-height: 1.36;
+  color: rgba(255, 255, 255, .92);
+}
+
+.project-info__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(8 * var(--n));
+  margin-top: calc(16 * var(--n));
+}
+
+.project-info__links a {
+  padding: calc(6 * var(--n)) calc(10 * var(--n));
+  background: #fff;
+  color: var(--ink);
+  font-size: calc(13 * var(--n));
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 calc(2 * var(--n)) 0 rgba(0, 0, 0, .18);
+  pointer-events: auto;
+  transition: background-color .2s;
+}
+
+.project-info__links a:hover {
+  background: var(--blue-100);
+}
+
+.project-info__links span {
+  padding: calc(6 * var(--n)) 0;
+  font-size: calc(13 * var(--n));
+  font-weight: 650;
+  color: rgba(255, 255, 255, .75);
+}
+
+.project-info__count {
+  margin-top: calc(22 * var(--n));
+  font-size: calc(12 * var(--n));
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: rgba(255, 255, 255, .7);
+}
+
+.case-nav {
+  position: absolute;
+  bottom: calc(150 * var(--n));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(9 * var(--n));
+  color: #fff;
+  opacity: 0;
+  pointer-events: none !important;
+  transition: opacity .3s;
+}
+
+.case-nav--prev { left: calc(95 * var(--n)); }
+.case-nav--next { right: calc(95 * var(--n)); }
+
+.is-showcase .case-nav {
+  opacity: 1;
+  pointer-events: auto !important;
+}
+
+.is-showcase .case-nav.is-dimmed {
+  opacity: .45;
+}
+
+.case-nav__circle {
+  display: grid;
+  place-items: center;
+  width: calc(50 * var(--n));
+  height: calc(50 * var(--n));
+  border: 1.6px solid rgba(255, 255, 255, .9);
+  border-radius: 50%;
+  transition: transform .25s var(--ease-out), background-color .25s;
+}
+
+.case-nav__circle svg {
+  width: calc(24 * var(--n));
+  height: calc(24 * var(--n));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.case-nav__label {
+  font-size: calc(15 * var(--n));
+  font-weight: 600;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.case-nav--next .case-nav__circle {
+  background: #fff;
+  color: var(--blue-800);
+}
+
+.case-nav--next:hover .case-nav__circle {
+  background: var(--blue-100);
+}
+
+.case-nav:hover .case-nav__circle {
+  transform: scale(1.08);
+}

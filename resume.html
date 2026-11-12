@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Currículo — Leonardo Olivieri Szervinski</title>
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles/fonts.css">
+<link rel="stylesheet" href="styles/resume.css">
+<script src="src/resume-language.js"></script>
+</head>
+<body>
+<div class="sheet">
+  <aside>
+    <div class="ph" role="img" aria-label="Memoji"></div>
+    <h1>LEONARDO<br>OLIVIERI<br>SZERVINSKI</h1>
+    <div class="role"><span data-l="pt">DESENVOLVEDOR FULL-STACK</span><span data-l="en">FULL-STACK DEVELOPER</span></div>
+
+    <h2><span data-l="pt">Contato</span><span data-l="en">Contact</span></h2>
+    <div class="row"><span><span data-l="pt">Local</span><span data-l="en">Location</span></span><b>Brasília – DF</b></div>
+    <div class="row col"><span>E-mail</span><b><a href="mailto:leonardo.szervinski@hotmail.com">leonardo.szervinski@hotmail.com</a></b></div>
+    <div class="row"><span>LinkedIn</span><b><a href="https://www.linkedin.com/in/leonardo-szervinski-84a760243/">/in/leonardo-szervinski</a></b></div>
+    <div class="row"><span>GitHub</span><b><a href="https://github.com/LeonardoSzervinski">@LeonardoSzervinski</a></b></div>
+    <div class="row col"><span><span data-l="pt">Portfólio</span><span data-l="en">Portfolio</span></span><b><a href="https://leonardo-szervinski.vercel.app">leonardo-szervinski.vercel.app</a></b></div>
+
+    <h2><span data-l="pt">Habilidades</span><span data-l="en">Skills</span></h2>
+    <div class="lbl"><span data-l="pt">Linguagens</span><span data-l="en">Languages</span></div>
+    <div class="chips"><i>TypeScript</i><i>JavaScript</i><i>PHP 8</i><i>Python</i><i>SQL</i><i>PL/SQL</i><i>C</i></div>
+    <div class="lbl">Web &amp; APIs</div>
+    <div class="chips"><i>Next.js</i><i>Flask</i><i>HTML</i><i>CSS</i><i>REST</i><i>OAuth2</i></div>
+    <div class="lbl"><span data-l="pt">Dados</span><span data-l="en">Data</span></div>
+    <div class="chips"><i>SQLite</i><i>Oracle APEX</i><i>SQLAlchemy</i></div>
+    <div class="lbl"><span data-l="pt">IA, testes e ferramentas</span><span data-l="en">AI, testing &amp; tools</span></div>
+    <div class="chips"><i>Ollama</i><i>OpenAI API</i><i>PHPUnit</i><i>Cypress</i><i>Gherkin</i><i>Git</i><i>Vercel</i></div>
+
+    <h2><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></h2>
+    <div class="row"><span><span data-l="pt">Português</span><span data-l="en">Portuguese</span></span><b><span data-l="pt">Nativo</span><span data-l="en">Native</span></b></div>
+    <div class="row"><span><span data-l="pt">Inglês</span><span data-l="en">English</span></span><b><span data-l="pt">Leitura intermediária</span><span data-l="en">Intermediate reading</span></b></div>
+  </aside>
+
+  <main>
+    <h2><span data-l="pt">Perfil</span><span data-l="en">Profile</span></h2>
+    <p class="lead" data-l="pt">Desenvolvedor full-stack formado em Engenharia de Software pela Universidade Católica de Brasília (UCB). Construo aplicações web de ponta a ponta, do banco de dados à interface, com atenção especial a integrações com APIs, tratamento de erros e testes. Tenho projetos com IA generativa, com a API de Cobranças do Banco do Brasil e com Oracle APEX.</p>
+    <p class="lead" data-l="en">Full-stack developer with a B.Sc. in Software Engineering from the Catholic University of Brasília (UCB). I build web applications end to end, from the database to the interface, with special care for API integrations, error handling and tests. My projects include generative AI, Banco do Brasil’s Billing API and Oracle APEX.</p>
+
+    <h2><span data-l="pt">Projetos</span><span data-l="en">Projects</span></h2>
+    <div class="item">
+      <div class="it"><b><span data-l="pt">Gestor de boletos — API de Cobranças do BB</span><span data-l="en">Bank slip manager — Banco do Brasil Billing API</span></b><em><span data-l="pt">teste técnico · 2026</span><span data-l="en">technical test · 2026</span></em></div>
+      <div class="stack">PHP 8 · SQLite · OAuth2 · PHPUnit</div>
+      <ul data-l="pt">
+        <li>Integração com a API de Cobranças v2 do Banco do Brasil (homologação): emissão, consulta, listagem com filtros e baixa de boletos.</li>
+        <li>Token OAuth2 reaproveitado em cache, leitura dos erros do BB (recusa x falha temporária) e cobertura com testes em PHPUnit.</li>
+      </ul>
+      <ul data-l="en">
+        <li>Integration with Banco do Brasil’s Billing API v2 (sandbox): issuing, checking, filtered listing and cancelling bank slips.</li>
+        <li>Cached OAuth2 token, parsing of BB errors (rejection vs. temporary failure) and PHPUnit test coverage.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="it"><b>PDF Insight AI</b><em>2026</em></div>
+      <div class="stack">Next.js · TypeScript · Ollama / OpenAI-compatible API · Vercel</div>
+      <ul data-l="pt">
+        <li>Upload de PDF, extração de texto no backend e análise por IA com resumo, pontos principais, insights e frases-chave.</li>
+        <li>Provedor de IA configurável (local com Ollama ou API externa) e divisão de PDFs longos para evitar timeout. Publicado na Vercel.</li>
+      </ul>
+      <ul data-l="en">
+        <li>PDF upload, server-side text extraction and AI analysis with summary, key points, insights and key quotes.</li>
+        <li>Configurable AI provider (local Ollama or external API) and chunking of long PDFs to avoid timeouts. Deployed on Vercel.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="it"><b><span data-l="pt">Cadastro de produtos — Oracle APEX</span><span data-l="en">Product catalog — Oracle APEX</span></b><em>2025</em></div>
+      <div class="stack">Oracle APEX · SQL · PL/SQL</div>
+      <ul data-l="pt"><li>Cadastro de produtos e categorias, com validação de preço garantida por trigger em PL/SQL.</li></ul>
+      <ul data-l="en"><li>Product and category management, with price validation enforced by a PL/SQL trigger.</li></ul>
+    </div>
+    <div class="item">
+      <div class="it"><b><span data-l="pt">Automação de testes E2E</span><span data-l="en">E2E test automation</span></b><em>2025</em></div>
+      <div class="stack">Cypress · Gherkin · JavaScript</div>
+      <ul data-l="pt"><li>Cenários BDD em Gherkin automatizados com Cypress sobre a loja de demonstração SauceDemo, rodando com interface ou headless.</li></ul>
+      <ul data-l="en"><li>BDD scenarios in Gherkin automated with Cypress against the SauceDemo store, running headed or headless.</li></ul>
+    </div>
+    <div class="item">
+      <div class="it"><b>Task Manager</b><em>2025</em></div>
+      <div class="stack">Python · Flask · SQLAlchemy · SQLite</div>
+      <ul data-l="pt"><li>Aplicação web com cadastro e login de usuários e CRUD completo de tarefas.</li></ul>
+      <ul data-l="en"><li>Web app with user sign-up and login and full task CRUD.</li></ul>
+    </div>
+    <div class="item">
+      <div class="it"><b><span data-l="pt">Portfólio interativo</span><span data-l="en">Interactive portfolio</span></b><em>2026</em></div>
+      <div class="stack">HTML · CSS 3D · JavaScript</div>
+      <ul data-l="pt"><li>Notebook em CSS 3D que abre conforme a rolagem, em português e inglês, sem frameworks.</li></ul>
+      <ul data-l="en"><li>A CSS 3D laptop that opens as you scroll, in Portuguese and English, with no frameworks.</li></ul>
+    </div>
+
+    <h2><span data-l="pt">Formação</span><span data-l="en">Education</span></h2>
+    <div class="edu"><b><span data-l="pt">Bacharelado em Engenharia de Software</span><span data-l="en">B.Sc. in Software Engineering</span></b><small><span data-l="pt">Universidade Católica de Brasília (UCB) · concluído</span><span data-l="en">Catholic University of Brasília (UCB) · completed</span></small></div>
+    <div class="edu"><b>CS50 — Introduction to Computer Science</b><small><span data-l="pt">Harvard University (online)</span><span data-l="en">Harvard University (online)</span></small></div>
+
+    <h2><span data-l="pt">Experiência</span><span data-l="en">Experience</span></h2>
+    <div class="item">
+      <div class="it"><b><span data-l="pt">Menor Aprendiz — Atendente</span><span data-l="en">Young Apprentice — Front Desk</span></b><em><span data-l="pt">Clínica oftalmológica</span><span data-l="en">Eye clinic</span></em></div>
+      <p data-l="pt">Atendimento e orientação a pacientes, apoio à equipe e à rotina da clínica: responsabilidade, atenção aos detalhes e comunicação com o público.</p>
+      <p data-l="en">Patient service and guidance, supporting the team and the clinic’s routine: responsibility, attention to detail and communication with the public.</p>
+    </div>
+  </main>
+</div>
+</body>
+</html>

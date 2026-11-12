@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Every module referenced by the page exists
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const seen = new Set();
+            const visit = (file) => {
+              if (seen.has(file)) return;
+              seen.add(file);
+              if (!fs.existsSync(file)) { console.error('Missing: ' + file); process.exit(1); }
+              const source = fs.readFileSync(file, 'utf8');
+              for (const [, spec] of source.matchAll(/from '(\.[^']+)'/g)) visit(path.join(path.dirname(file), spec));
+            };
+            visit('src/main.js');
+            const html = fs.readFileSync('index.html', 'utf8') + fs.readFileSync('resume.html', 'utf8');
+            for (const [, ref] of html.matchAll(/(?:href|src)=\"((?:styles|src|assets)\/[^\"?]+)\"/g)) {
+              if (!fs.existsSync(ref)) { console.error('Missing: ' + ref); process.exit(1); }
+            }
+            console.log('OK: ' + seen.size + ' modules');
+          "

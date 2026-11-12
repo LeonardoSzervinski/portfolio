@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leonardo — Portfólio</title>
+  <meta name="description" content="Leonardo Olivieri Szervinski — desenvolvedor full-stack. Projetos, perfil e currículo.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/fonts.css">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/stage.css">
+  <link rel="stylesheet" href="styles/hero.css">
+  <link rel="stylesheet" href="styles/navigation.css">
+  <link rel="stylesheet" href="styles/showcase.css">
+  <link rel="stylesheet" href="styles/scenes.css">
+  <link rel="stylesheet" href="styles/dialogs.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <h1 class="visually-hidden">Leonardo Olivieri Szervinski — <span data-i18n="role">DESENVOLVEDOR FULL-STACK</span></h1>
+
+  <div class="stage" id="stage">
+    <div class="scene-frame" id="scene-frame">
+      <div class="laptop" aria-hidden="true">
+        <div class="laptop__shadow"></div>
+        <div class="laptop__deck"><div class="laptop__keyboard"></div><div class="laptop__trackpad"></div></div>
+        <div class="laptop__lip"></div>
+        <div class="laptop__lid" id="laptop-lid">
+          <div class="laptop__face">
+            <span class="laptop__camera"></span>
+            <div class="screen" id="screen"><div class="screen__flash" id="screen-flash"></div></div>
+            <div class="screen__hit" id="screen-hit"></div>
+          </div>
+          <div class="laptop__back"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="hero" id="hero">
+      <svg class="wordmark is-pending" id="wordmark" viewBox="0 0 1440 240" aria-hidden="true">
+        <defs>
+          <linearGradient id="wordmark-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+            <stop offset=".5" stop-color="#f1f3fb" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#dde3fb" stop-opacity=".3"/>
+          </linearGradient>
+        </defs>
+        <text x="10" y="210" textLength="1420" lengthAdjust="spacingAndGlyphs" fill="url(#wordmark-fill)">LEONARDO</text>
+      </svg>
+
+      <div class="memoji" id="memoji">
+        <div class="memoji__tilt" id="memoji-tilt">
+          <div class="memoji__face is-pending" id="memoji-face">
+            <img src="assets/images/memoji.webp" alt="Memoji do Leonardo" draggable="false">
+          </div>
+        </div>
+      </div>
+
+      <p class="tagline is-pending" id="tagline" data-i18n="tagline">dev full-stack</p>
+
+      <div class="lanyard" id="lanyard">
+        <div class="badge is-pending" id="badge">
+          <img class="badge__strap" src="assets/images/lanyard-badge.webp" alt="" draggable="false">
+          <div class="badge__card" aria-hidden="true">
+            <h2 class="badge__title" data-i18n-html="badgeTitle">CARTÃO<br>DEV</h2>
+            <div class="badge__year">2026</div>
+            <div class="badge__role" data-i18n="role">DESENVOLVEDOR FULL-STACK</div>
+            <div class="badge__photo"></div>
+            <div class="badge__row"><span data-i18n="badgeName">NOME</span><b>LEONARDO</b></div>
+            <div class="badge__row"><span data-i18n="badgeFocus">FOCO</span><b>FULL-STACK</b></div>
+            <div class="badge__row"><span>GITHUB</span><b>@LEONARDOSZERVINSKI</b></div>
+            <div class="badge__row"><span>LINKEDIN</span><b>/IN/LEONARDO-SZERVINSKI</b></div>
+          </div>
+          <button class="badge__handle" id="badge-handle" type="button" data-i18n-aria="openProfile" aria-label="abrir cartão de perfil" aria-haspopup="dialog"></button>
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="Principal">
+      <button class="nav-tag nav-tag--studio is-pending" id="nav-studio" type="button" data-i18n="studio">meu estúdio</button>
+      <button class="nav-tag nav-tag--portfolio is-pending" id="nav-portfolio" type="button" data-i18n="portfolio">portfólio</button>
+      <a class="nav-tag nav-tag--contacts is-pending" data-contact="linkedin" target="_blank" rel="noopener" data-i18n="contacts">contatos</a>
+      <button class="nav-tag nav-tag--resume is-pending" id="nav-resume" type="button" data-i18n="resume" aria-haspopup="dialog">currículo</button>
+    </nav>
+
+    <button class="brand" id="brand" type="button">LEONARDO</button>
+
+    <div class="lang-toggle is-pending" id="lang-toggle" role="group" data-i18n-aria="language" aria-label="Idioma">
+      <button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR">PT</button><button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+
+    <div class="scroll-hint is-pending" id="scroll-hint" aria-hidden="true">
+      <span class="scroll-hint__drip"></span><span data-i18n="scrollHint">role para ver os projetos</span>
+    </div>
+
+    <section class="ticket" id="ticket" aria-labelledby="ticket-title">
+      <span class="ticket__hole"></span><span class="ticket__hole"></span><span class="ticket__hole"></span><span class="ticket__hole"></span>
+      <h2 class="ticket__title" id="ticket-title"></h2>
+      <ul class="ticket__rows" id="ticket-facts"></ul>
+    </section>
+
+    <div class="project-info" id="project-info" aria-live="polite">
+      <div class="project-info__key" id="project-key"></div>
+      <p class="project-info__text" id="project-summary"></p>
+      <div class="project-info__links" id="project-links"></div>
+      <div class="project-info__count" id="project-count"></div>
+    </div>
+
+    <button class="case-nav case-nav--prev" id="case-prev" type="button">
+      <span class="case-nav__circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+      <span class="case-nav__label" data-i18n-html="previous">projeto <br>anterior</span>
+    </button>
+    <button class="case-nav case-nav--next" id="case-next" type="button">
+      <span class="case-nav__circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="case-nav__label" data-i18n-html="next">próximo <br>projeto</span>
+    </button>
+  </div>
+
+  <div class="dialog" id="profile" role="dialog" aria-modal="true" aria-labelledby="profile-name" aria-hidden="true">
+    <div class="dialog__card" id="profile-card">
+      <button class="dialog__close" id="profile-close" type="button" data-i18n-aria="close" aria-label="fechar">×</button>
+      <div class="profile__head">
+        <div class="profile__photo" role="img" aria-label="Memoji"></div>
+        <div>
+          <h2 class="profile__name" id="profile-name">LEONARDO<br>SZERVINSKI</h2>
+          <div class="profile__role" data-i18n="role">DESENVOLVEDOR FULL-STACK</div>
+        </div>
+      </div>
+      <dl class="profile__facts">
+        <dt data-i18n="profileName">Nome</dt><dd>Leonardo Olivieri Szervinski</dd>
+        <dt data-i18n="profileAge">Idade</dt><dd data-i18n="profileAgeValue">23 anos</dd>
+        <dt data-i18n="profileEducation">Formação</dt><dd data-i18n="profileEducationValue">Bacharel em Engenharia de Software — UCB (formado)</dd>
+        <dt data-i18n="profileLocation">Local</dt><dd>Brasília – DF</dd>
+        <dt>E-mail</dt><dd><a data-contact="email">leonardo.szervinski@hotmail.com</a></dd>
+        <dt data-i18n="profileLanguages">Idiomas</dt><dd data-i18n="profileLanguagesValue">Português (nativo) · Inglês (leitura intermediária)</dd>
+        <dt>GitHub</dt><dd><a data-contact="github" target="_blank" rel="noopener">@LeonardoSzervinski</a></dd>
+      </dl>
+      <div class="profile__actions">
+        <a data-contact="email" data-i18n="profileEmail">enviar e-mail</a>
+        <a data-contact="linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot__inner">
+      <div class="boot__warning" id="boot-warning"></div>
+      <p class="boot__title" id="boot-title"></p>
+      <pre class="boot__log" id="boot-log"></pre>
+      <div class="boot__progress"><div class="boot__bar"><i id="boot-bar"></i></div><div class="boot__percent" id="boot-percent">0%</div></div>
+      <div class="boot__skip" id="boot-skip"></div>
+    </div>
+  </div>
+
+  <div class="dialog" id="resume" role="dialog" aria-modal="true" aria-labelledby="resume-title" aria-hidden="true">
+    <div class="dialog__card dialog__card--resume" id="resume-card">
+      <div class="resume__bar">
+        <h2 class="resume__title" id="resume-title" data-i18n="resumeTitle">CURRÍCULO</h2>
+        <a class="resume__download" id="resume-download" href="assets/documents/curriculo-leonardo-pt.pdf" download data-i18n="resumeDownload">baixar PDF ↓</a>
+        <button class="dialog__close" id="resume-close" type="button" data-i18n-aria="close" aria-label="fechar">×</button>
+      </div>
+      <iframe class="resume__frame" id="resume-frame" title="Currículo"></iframe>
+    </div>
+  </div>
+</body>
+</html>

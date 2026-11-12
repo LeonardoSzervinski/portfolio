@@ -1,0 +1,231 @@
+/* Hero decorations: wordmark, tagline, lanyard badge, memoji and scroll hint. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.overlay button,
+.overlay a {
+  pointer-events: auto;
+}
+
+.hero {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wordmark {
+  position: absolute;
+  left: 2.5vw;
+  top: calc(56 * var(--n));
+  width: 95vw;
+  height: calc(95vw * 240 / 1440);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wordmark text {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 900;
+  font-size: 268px;
+  letter-spacing: -6px;
+}
+
+.tagline {
+  position: absolute;
+  left: 6vw;
+  top: calc(56 * var(--n) + 8.6vw);
+  margin: 0;
+  font-family: 'Caveat Brush', cursive;
+  font-size: calc(84 * var(--n));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.5px;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  transform: rotate(-8deg);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* Memoji sitting behind the laptop: the box ends at the lid's top edge,
+   so the lid hides him as it opens. */
+.memoji {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.memoji__tilt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transform-origin: 50% 70%;
+  transition: transform .5s var(--ease-out);
+}
+
+.memoji__face img {
+  display: block;
+  width: 100%;
+  filter: drop-shadow(0 14px 22px rgba(20, 30, 110, .28));
+}
+
+/* Lanyard badge */
+.lanyard {
+  position: absolute;
+  right: calc(165 * var(--n));
+  top: calc(-70 * var(--n));
+  width: var(--badge-width);
+  height: calc(var(--badge-width) * 1030 / 582);
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 582px;
+  height: 1030px;
+  transform-origin: 288px 0;
+  scale: var(--badge-scale);
+  translate: calc(-288px + var(--badge-width) / 2) 0;
+  pointer-events: none;
+}
+
+.badge__strap {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.badge__card {
+  position: absolute;
+  left: 172px;
+  top: 536px;
+  width: 238px;
+  height: 392px;
+  padding: 20px 16px 0;
+  color: var(--ink-soft);
+}
+
+.badge__title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -.5px;
+}
+
+.badge__year {
+  position: absolute;
+  right: 16px;
+  top: 62px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.badge__role {
+  margin-top: 12px;
+  padding-top: 5px;
+  border-top: 1px solid #222;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.badge__photo {
+  width: 92px;
+  height: 112px;
+  margin: 12px auto;
+  border-radius: 6px;
+  background: #dfe5fa url('../assets/images/memoji.webp') 50% 30% / 118% no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+
+.badge__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 6px 0 3px;
+  border-bottom: 1.5px dotted #333;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.badge__row b {
+  font-weight: 600;
+}
+
+.badge__handle {
+  position: absolute;
+  left: 160px;
+  top: 470px;
+  width: 262px;
+  height: 440px;
+  cursor: grab;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+.badge__handle:focus-visible {
+  outline-width: 12px;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(22 * var(--n));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(10 * var(--n));
+  font-size: calc(12 * var(--n));
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .85;
+  text-shadow: 0 1px 8px rgba(40, 50, 140, .35);
+  transform: translateX(-50%);
+}
+
+.scroll-hint__drip {
+  position: relative;
+  width: calc(1.5 * var(--n));
+  height: calc(22 * var(--n));
+  overflow: hidden;
+  background: rgba(255, 255, 255, .35);
+}
+
+.scroll-hint__drip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 100%;
+  height: 40%;
+  background: #fff;
+  animation: drip 1.6s cubic-bezier(.6, 0, .4, 1) infinite;
+}
+
+@keyframes drip {
+  to {
+    top: 100%;
+  }
+}
+
+.is-showcase .scroll-hint,
+.is-scrolling .scroll-hint {
+  visibility: hidden;
+}
