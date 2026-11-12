@@ -12,6 +12,11 @@ test('a flick finishes in its direction even from far away', () => {
   assert.equal(releaseTarget({ progress: 0.6, velocity: -2 }), 0, 'quick swipe down closes');
 });
 
+test('swiping down to close never reopens, even with the lid almost open', () => {
+  assert.equal(releaseTarget({ progress: 0.9, velocity: -0.5 }), 0);
+  assert.equal(releaseTarget({ progress: 0.95, velocity: -0.3 }), 0);
+});
+
 test('drag velocity follows the finger and is forgotten after a pause', () => {
   const velocity = new DragVelocity();
   velocity.reset(0);

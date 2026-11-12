@@ -1,16 +1,18 @@
-/** How far ahead (seconds) a released swipe keeps travelling with its own speed. */
-const FLICK_PROJECTION = 0.2;
-/** Released past this point the laptop finishes opening; before it, it closes. */
-const OPEN_THRESHOLD = 0.3;
+/** Faster than this (progress units per second) the gesture's direction decides. */
+const DIRECTION_SPEED = 0.25;
+/** A slow release past this point finishes opening; before it, it closes. */
+const OPEN_THRESHOLD = 0.4;
 
 /**
  * Where the journey should settle when the finger leaves the screen, so a swipe
- * never stops half way: it completes in the direction the gesture was going.
+ * never stops half way. The direction of the gesture wins: swiping down always
+ * closes and swiping up always opens; only a slow release falls back to position.
  * @param {{ progress: number, velocity: number }} gesture velocity in progress units per second
  */
 export function releaseTarget({ progress, velocity }) {
-  const projected = progress + velocity * FLICK_PROJECTION;
-  return projected >= OPEN_THRESHOLD ? 1 : 0;
+  if (velocity > DIRECTION_SPEED) return 1;
+  if (velocity < -DIRECTION_SPEED) return 0;
+  return progress >= OPEN_THRESHOLD ? 1 : 0;
 }
 
 /**

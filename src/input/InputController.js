@@ -3,7 +3,7 @@ import { DragVelocity } from '../journey/gestures.js';
 const WHEEL_STEP_LOCK = 900;
 const WHEEL_THRESHOLD = 18;
 const SWIPE_THRESHOLD = 40;
-const SCROLL_PER_PROGRESS = 1500; // pixels of wheel scroll for the whole journey
+const SCROLL_PER_PROGRESS = 1200; // pixels of wheel scroll for the whole journey
 const SWIPE_PER_PROGRESS = 0.9; // screen heights of swipe for the whole journey
 
 /**
@@ -80,14 +80,19 @@ export class InputController {
       return;
     }
 
+    // Showcase: sideways swipes browse projects; swiping down goes straight back to the start.
     const { clientX, clientY } = event.changedTouches[0];
     const dx = clientX - touch.startX;
     const dy = clientY - touch.startY;
-    const horizontal = Math.abs(dx) > Math.abs(dy);
-    const delta = horizontal ? dx : dy;
-    if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-    if (delta < 0) this.journey.next();
-    else this.journey.previous();
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+      if (dx < 0) this.journey.next();
+      else this.journey.previous();
+      return;
+    }
+    if (Math.abs(dy) < SWIPE_THRESHOLD) return;
+    if (dy < 0) this.journey.next();
+    else this.journey.close();
   }
 
   #onKeydown(event) {

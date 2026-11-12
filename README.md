@@ -63,7 +63,8 @@ docs/BOARD.md           Kanban board and Definition of Done
 
 - Real buttons and links with accessible names in both languages; visible focus ring.
 - Dialogs trap focus, make the page behind them inert, close on Escape and return focus.
-- Full keyboard control: ↓ / Space / PageDown advance, ↑ / ← go back, → next project.
+- Full keyboard control: ↓ / Space / PageDown advance, ↑ / ← go back (from the first project the laptop closes), → next project.
+- Touch: swipe up opens, swipe down closes (the release follows the gesture's direction); in the projects, swipe sideways to browse and down to go back to the start.
 - `prefers-reduced-motion` removes animation and makes the journey instant.
 - Project changes are announced through an `aria-live` region; the page language follows the toggle.
 

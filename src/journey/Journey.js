@@ -58,7 +58,7 @@ export class Journey {
   }
 
   close() {
-    if (this.inShowcase) this.#leave(0);
+    if (this.inShowcase) this.#leave();
     else this.#tween.goTo(0);
   }
 
@@ -66,9 +66,10 @@ export class Journey {
     if (this.inShowcase) this.#show((this.index + 1) % this.projects.length);
   }
 
+  /** Back from the first project closes the laptop all the way (scrolling down again reopens it). */
   previous() {
     if (!this.inShowcase || this.busy) return;
-    if (this.index === 0) this.#leave(0.94);
+    if (this.index === 0) this.#leave();
     else this.#show(this.index - 1);
   }
 
@@ -156,8 +157,8 @@ export class Journey {
     this.#setBusy(false);
   }
 
-  /** Pull the camera back; the lid closes as far as `target` (0 = fully closed). */
-  async #leave(target) {
+  /** Pull the camera back and close the lid on its own, back to the start. */
+  async #leave() {
     if (this.busy || !this.inShowcase) return;
     this.#setBusy(true);
     this.panel.leave();
@@ -167,8 +168,7 @@ export class Journey {
     this.#setMode(MODE.HERO);
 
     this.#tween.jumpTo(1);
-    if (target === 0) this.#tween.goTo(0);
-    else this.#tween.nudge(target - 1);
+    this.#tween.goTo(0);
 
     await this.motion.wait(380);
     this.#setBusy(false);
