@@ -78,7 +78,7 @@
   width: 96px;
   height: 112px;
   border-radius: 12px;
-  background: #dfe5fa url('../assets/images/memoji.webp') 50% 28% / 122% no-repeat;
+  background: #1a1c22 url('../assets/images/portrait.webp') 50% 20% / cover no-repeat;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
 }
 

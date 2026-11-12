@@ -36,6 +36,7 @@ export const translations = Object.freeze({
     profileLanguages: 'Idiomas',
     profileLanguagesValue: 'Português (nativo) · Inglês (leitura intermediária)',
     profileEmail: 'enviar e-mail',
+    portraitAlt: 'Foto de Leonardo Olivieri Szervinski',
     projectOf: 'Projeto {current} de {total}',
   },
   en: {
@@ -71,6 +72,7 @@ export const translations = Object.freeze({
     profileLanguages: 'Languages',
     profileLanguagesValue: 'Portuguese (native) · English (intermediate reading)',
     profileEmail: 'send an email',
+    portraitAlt: 'Photo of Leonardo Olivieri Szervinski',
     projectOf: 'Project {current} of {total}',
   },
 });
