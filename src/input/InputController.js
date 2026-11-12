@@ -1,7 +1,10 @@
+import { DragVelocity } from '../journey/gestures.js';
+
 const WHEEL_STEP_LOCK = 900;
 const WHEEL_THRESHOLD = 18;
 const SWIPE_THRESHOLD = 40;
 const SCROLL_PER_PROGRESS = 1500; // pixels of wheel scroll for the whole journey
+const SWIPE_PER_PROGRESS = 0.9; // screen heights of swipe for the whole journey
 
 /**
  * Turns wheel, touch and keyboard input into journey commands.
@@ -10,6 +13,7 @@ const SCROLL_PER_PROGRESS = 1500; // pixels of wheel scroll for the whole journe
 export class InputController {
   #wheelLocked = false;
   #touch = null;
+  #dragVelocity = new DragVelocity();
 
   constructor({ journey, isBlocked, onEscape }) {
     this.journey = journey;
@@ -48,21 +52,33 @@ export class InputController {
 
   #onTouchStart(event) {
     const { clientX, clientY } = event.touches[0];
-    this.#touch = { startX: clientX, startY: clientY, lastY: clientY };
+    this.#touch = { startX: clientX, startY: clientY, lastY: clientY, moved: false };
+    this.#dragVelocity.reset(event.timeStamp);
   }
 
   #onTouchMove(event) {
     if (this.isBlocked() || !this.#touch) return;
     event.preventDefault();
     const { clientY } = event.touches[0];
-    if (!this.journey.inShowcase) this.journey.scrub((this.#touch.lastY - clientY) / (innerHeight * 1.1));
+    if (!this.journey.inShowcase) {
+      const delta = (this.#touch.lastY - clientY) / (innerHeight * SWIPE_PER_PROGRESS);
+      this.journey.scrub(delta);
+      this.#dragVelocity.sample(delta, event.timeStamp);
+      this.#touch.moved = true;
+    }
     this.#touch.lastY = clientY;
   }
 
   #onTouchEnd(event) {
     const touch = this.#touch;
     this.#touch = null;
-    if (!touch || this.isBlocked() || !this.journey.inShowcase) return;
+    if (!touch || this.isBlocked()) return;
+
+    // Hero: finish opening or closing with the swipe's momentum instead of stopping mid-way.
+    if (!this.journey.inShowcase) {
+      if (touch.moved) this.journey.release(this.#dragVelocity.release(event.timeStamp));
+      return;
+    }
 
     const { clientX, clientY } = event.changedTouches[0];
     const dx = clientX - touch.startX;

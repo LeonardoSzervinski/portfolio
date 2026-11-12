@@ -44,6 +44,25 @@ test('targets are clamped to 0..1', () => {
   assert.equal(tween.target, 1);
 });
 
+test('the spring never overshoots the target', () => {
+  const tween = new ProgressTween();
+  tween.goTo(1);
+  for (let i = 0; i < 300; i += 1) {
+    tween.step(1 / 60);
+    assert.ok(tween.value <= 1 && tween.value >= 0);
+  }
+});
+
+test('moving the target does not cause a jump in speed', () => {
+  const tween = new ProgressTween();
+  tween.nudge(0.2);
+  for (let i = 0; i < 10; i += 1) tween.step(1 / 60);
+  const before = tween.velocity;
+  tween.nudge(0.2); // next wheel tick
+  tween.step(1 / 240);
+  assert.ok(Math.abs(tween.velocity - before) < 1, 'velocity changes gradually');
+});
+
 test('instant step jumps straight to the target (reduced motion)', () => {
   const tween = new ProgressTween();
   tween.goTo(1);

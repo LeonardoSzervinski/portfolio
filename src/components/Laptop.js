@@ -13,18 +13,29 @@ export class Laptop {
     this.screen = screen;
   }
 
+  // Only transform/opacity change per frame (compositor-only), and only when the value changes.
+  #write(element, property, value, key) {
+    if (this[key] === value) return;
+    this[key] = value;
+    element.style[property] = value;
+  }
+
   setPose({ x, y, scale }) {
-    this.frame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    this.#write(this.frame, 'transform', `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(5)})`, 'pose');
   }
 
   setLidAngle(degrees) {
-    this.lid.style.transform = `rotateX(${degrees}deg)`;
+    this.#write(this.lid, 'transform', `rotateX(${degrees.toFixed(3)}deg)`, 'angle');
     // Safari stops painting animated content inside a backface-hidden face of a 3D
     // context, leaving the screen black. With the lid up we drop both (see stage.css).
-    this.model.classList.toggle('is-lid-up', degrees > LID_UP_ANGLE);
+    const lidUp = degrees > LID_UP_ANGLE;
+    if (lidUp !== this.lidUp) {
+      this.lidUp = lidUp;
+      this.model.classList.toggle('is-lid-up', lidUp);
+    }
   }
 
   setScreenOpacity(opacity) {
-    this.screen.style.opacity = String(opacity);
+    this.#write(this.screen, 'opacity', opacity.toFixed(3), 'screenOpacity');
   }
 }

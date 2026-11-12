@@ -20,7 +20,10 @@ export class Hero {
   }
 
   setOpacity(opacity) {
-    this.container.style.opacity = String(opacity);
+    const value = opacity.toFixed(3);
+    if (value === this.opacity) return;
+    this.opacity = value;
+    this.container.style.opacity = value;
     this.container.style.visibility = opacity <= 0 ? 'hidden' : '';
   }
 

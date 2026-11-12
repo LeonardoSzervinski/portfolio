@@ -149,7 +149,7 @@ journey = new Journey({
   motion,
   bus,
   body,
-  stage: $('#stage'),
+  glow: $('#stage-glow'),
 });
 
 const languageToggle = new LanguageToggle({ element: $('#lang-toggle'), i18n });

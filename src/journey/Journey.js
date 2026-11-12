@@ -1,4 +1,5 @@
 import { interpolatePose, journeyFrame, memojiBox } from '../layout/geometry.js';
+import { releaseTarget } from './gestures.js';
 import { ProgressTween } from './ProgressTween.js';
 
 export const MODE = Object.freeze({ HERO: 'hero', SHOWCASE: 'showcase' });
@@ -10,13 +11,14 @@ export const MODE = Object.freeze({ HERO: 'hero', SHOWCASE: 'showcase' });
 export class Journey {
   #tween = new ProgressTween();
   #lastFrameTime = 0;
+  #renderedProgress = Number.NaN;
 
   mode = MODE.HERO;
   index = 0;
   busy = false;
 
-  constructor({ layout, laptop, memoji, hero, panel, player, projects, motion, bus, body, stage }) {
-    Object.assign(this, { layout, laptop, memoji, hero, panel, player, projects, motion, bus, body, stage });
+  constructor({ layout, laptop, memoji, hero, panel, player, projects, motion, bus, body, glow }) {
+    Object.assign(this, { layout, laptop, memoji, hero, panel, player, projects, motion, bus, body, glow });
   }
 
   get inShowcase() {
@@ -49,6 +51,12 @@ export class Journey {
     if (!this.inShowcase) this.#tween.goTo(1);
   }
 
+  /** End of a swipe: finish opening or closing in the direction the finger was moving. */
+  release(velocity) {
+    if (this.inShowcase || this.busy) return;
+    this.#tween.goTo(releaseTarget({ progress: this.#tween.value, velocity }));
+  }
+
   close() {
     if (this.inShowcase) this.#leave(0);
     else this.#tween.goTo(0);
@@ -77,7 +85,8 @@ export class Journey {
 
     if (!this.inShowcase) {
       const progress = this.#tween.step(seconds, { instant: this.motion.reduced });
-      this.#render(progress);
+      // Nothing moved: skip the DOM writes entirely (saves work and battery while idle).
+      if (progress !== this.#renderedProgress) this.#render(progress);
       if (progress >= 1 && this.#tween.target >= 1 && !this.busy) this.#arrive();
     }
     requestAnimationFrame((next) => this.#loop(next));
@@ -101,8 +110,9 @@ export class Journey {
       compact: viewport.compact,
     }));
     this.hero.setOpacity(frame.heroOpacity);
-    this.stage.style.setProperty('--glow', String(1 - frame.zoom));
+    this.glow.style.opacity = String(1 - frame.zoom);
     this.body.classList.toggle('is-scrolling', progress > 0.01);
+    this.#renderedProgress = progress;
   }
 
   #setBusy(busy) {

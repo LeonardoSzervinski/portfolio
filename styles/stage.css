@@ -12,14 +12,13 @@
   }
 }
 
-/* Soft light pooling behind the laptop in the hero. */
-.stage::before {
-  content: '';
+/* Soft light pooling behind the laptop in the hero. Its own layer: fading it is GPU-only. */
+.stage__glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(ellipse 40% 34% at 50% 80%, rgba(220, 226, 255, .45) 0%, rgba(190, 200, 255, .18) 50%, rgba(190, 200, 255, 0) 100%);
-  opacity: var(--glow, 1);
+  will-change: opacity;
 }
 
 .scene-frame {
@@ -30,6 +29,7 @@
   width: 1440px;
   height: 810px;
   transform-origin: 0 0;
+  will-change: transform;
 }
 
 /* The open lid sits on the z = 0 plane, so the screen lands exactly on its 2D rect. */
@@ -48,8 +48,7 @@
   top: 778px;
   width: 980px;
   height: 70px;
-  background: radial-gradient(closest-side, rgba(40, 55, 150, .22), rgba(40, 55, 150, 0));
-  filter: blur(10px);
+  background: radial-gradient(closest-side, rgba(40, 55, 150, .2), rgba(40, 55, 150, .08) 55%, rgba(40, 55, 150, 0));
 }
 
 .laptop__deck {
@@ -120,6 +119,7 @@
   transform-origin: 50% 100%;
   transform-style: preserve-3d;
   transform: rotateX(-89deg);
+  will-change: transform;
 }
 
 .laptop__face,

@@ -8,13 +8,23 @@ export class Memoji {
     this.enabled = true;
   }
 
+  /**
+   * Position and size only change on resize; during the journey only the clip height
+   * moves, and the face is its own GPU layer, so no repaint happens while scrolling.
+   */
   place({ left, top, size, height }) {
-    Object.assign(this.container.style, {
-      left: `${left}px`,
-      top: `${top}px`,
-      width: `${size}px`,
-      height: `${height}px`,
-    });
+    const box = `${left.toFixed(1)}|${top.toFixed(1)}|${size.toFixed(1)}`;
+    if (box !== this.box) {
+      this.box = box;
+      this.size = size;
+      Object.assign(this.container.style, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
+    }
+    // Hide what is below the lid's edge with a clip instead of a height: no layout per frame.
+    const hidden = `inset(0 0 ${Math.max(0, this.size - Math.max(0, height)).toFixed(1)}px 0)`;
+    if (hidden !== this.clip) {
+      this.clip = hidden;
+      this.container.style.clipPath = hidden;
+    }
   }
 
   lookAt(x, y) {
