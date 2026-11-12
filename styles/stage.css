@@ -127,7 +127,23 @@
   position: absolute;
   inset: 0;
   border-radius: 26px 26px 8px 8px;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* Lid up: only its front can be seen, so the lid leaves the 3D context and the screen
+   keeps its back face. Safari does not paint animated content otherwise. */
+.laptop.is-lid-up .laptop__lid {
+  transform-style: flat;
+}
+
+.laptop.is-lid-up .laptop__face {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+
+.laptop.is-lid-up .laptop__back {
+  visibility: hidden;
 }
 
 .laptop__face {

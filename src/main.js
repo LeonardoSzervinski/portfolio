@@ -40,7 +40,12 @@ const motion = new Motion({ reduced: matchMedia('(prefers-reduced-motion: reduce
 const i18n = new I18n({ dictionary: translations, storage: safeStorage, bus });
 
 /* ---------- scene ---------- */
-const laptop = new Laptop({ frame: $('#scene-frame'), lid: $('#laptop-lid'), screen: $('#screen') });
+const laptop = new Laptop({
+  model: $('#laptop'),
+  frame: $('#scene-frame'),
+  lid: $('#laptop-lid'),
+  screen: $('#screen'),
+});
 
 const player = new ScreenPlayer({
   screen: $('#screen'),
