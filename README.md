@@ -1,5 +1,7 @@
 # Leonardo Olivieri Szervinski — Portfolio
 
+**Live:** [leonardosz.com](https://leonardosz.com)
+
 Interactive portfolio: scrolling opens a 3D laptop and the camera flies into its screen,
 where each project plays as an animated showcase. Portuguese and English, phone and desktop.
 
