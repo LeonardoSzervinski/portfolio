@@ -336,7 +336,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, .1) 0 1px, transparent 1px 3px);
+  background: linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 1px) 0 0 / 100% 3px;
 }
 
 .os__login,
@@ -351,7 +351,9 @@
   align-items: center;
   justify-content: center;
   gap: 1em;
-  background: conic-gradient(#0d1233 25%, #121a45 0 50%, #0d1233 0 75%, #121a45 0) 0 0 / calc(4 * var(--px)) calc(4 * var(--px));
+  /* checkerboard dither as a tiny tiled image: far cheaper to paint than a gradient */
+  background: #0d1233 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' shape-rendering='crispEdges'%3E%3Crect width='2' height='2' fill='%230d1233'/%3E%3Crect width='1' height='1' fill='%23121a45'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23121a45'/%3E%3C/svg%3E") 0 0 / calc(4 * var(--px)) calc(4 * var(--px));
+  image-rendering: pixelated;
 }
 
 .os__avatar {
@@ -404,7 +406,8 @@
 
 /* desktop */
 .os__desktop {
-  background: conic-gradient(#2a3fa8 25%, #3150c6 0 50%, #2a3fa8 0 75%, #3150c6 0) 0 0 / calc(4 * var(--px)) calc(4 * var(--px));
+  background: #2a3fa8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' shape-rendering='crispEdges'%3E%3Crect width='2' height='2' fill='%232a3fa8'/%3E%3Crect width='1' height='1' fill='%233150c6'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%233150c6'/%3E%3C/svg%3E") 0 0 / calc(4 * var(--px)) calc(4 * var(--px));
+  image-rendering: pixelated;
   visibility: hidden;
 }
 
@@ -625,14 +628,15 @@
 }
 
 /* ----- timeline (4.6 s, see ResumeReveal.js) ----- */
-.reveal.is-playing .pc { animation: pc-dive 1.05s .25s cubic-bezier(.65, 0, .2, 1) both; }
+/* will-change: the computer is painted once at full size and only moved by the GPU */
+.reveal.is-playing .pc { will-change: transform; animation: pc-dive 1.05s .25s cubic-bezier(.65, 0, .2, 1) both; }
 .reveal.is-playing .os__password span { animation: os-wipe .5s 1.2s steps(8) both; }
 .reveal.is-playing .os__login .os__loading i { animation: os-wipe .65s 1.75s steps(11) both; }
 .reveal.is-playing .os__login { animation: os-hide 0s 2.5s both; }
 .reveal.is-playing .os__desktop { animation: os-show 0s 2.5s both; }
 .reveal.is-playing .os__pointer { animation: os-point .55s 2.6s cubic-bezier(.4, 0, .2, 1) both; }
 .reveal.is-playing .os__folder { animation: os-select .16s 3.15s steps(1) forwards; }
-.reveal.is-playing .os__window { animation: os-open .24s 3.3s steps(5) forwards; }
+.reveal.is-playing .os__window { animation: os-open .3s 3.3s var(--ease-out) forwards; }
 .reveal.is-playing .os__status .os__loading i { animation: os-wipe .9s 3.55s steps(12) both; }
 
 .reveal.is-playing .os__head,

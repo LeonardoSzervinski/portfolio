@@ -20,9 +20,15 @@ export class ResumeDialog extends Dialog {
     };
   }
 
+  /** Starts loading the résumé ahead of time, so opening the window is instant. */
+  preload() {
+    const source = `resume.html?lang=${this.i18n.language}&embed=1`;
+    if (!this.frame.src.endsWith(source)) this.frame.src = source;
+  }
+
   onOpen() {
     const language = this.i18n.language;
-    this.frame.src = `resume.html?lang=${language}&embed=1`;
+    this.preload();
     this.downloadLink.href = `assets/documents/curriculo-leonardo-${language}.pdf`;
     this.downloadLink.setAttribute('download', this.i18n.t('resumeFile'));
   }

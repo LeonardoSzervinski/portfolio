@@ -168,6 +168,7 @@ const languageToggle = new LanguageToggle({ element: $('#lang-toggle'), i18n });
 /* ---------- events ---------- */
 async function openResume() {
   if (isBlocked()) return;
+  resume.preload(); // loads while the intro plays
   await reveal.run();
   resume.open();
 }
