@@ -2,8 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { projects } from '../src/config/projects.js';
 import { scenes } from '../src/config/scenes.js';
-import { bootScript, LANGUAGES, translations } from '../src/config/translations.js';
+import { LANGUAGES, translations } from '../src/config/translations.js';
 import { contact } from '../src/config/contact.js';
+import { story } from '../src/config/story.js';
 
 test('every language has exactly the same interface keys', () => {
   const [reference, ...others] = LANGUAGES.map((language) => Object.keys(translations[language]).sort());
@@ -15,14 +16,6 @@ test('no translation is empty', () => {
     for (const [key, value] of Object.entries(translations[language])) {
       assert.ok(value.trim().length > 0, `${language}.${key}`);
     }
-  }
-});
-
-test('the boot script exists for every language', () => {
-  for (const language of LANGUAGES) {
-    const script = bootScript[language];
-    assert.ok(script.title && script.warning && script.skip);
-    assert.ok(script.lines.length > 0);
   }
 });
 
@@ -58,6 +51,20 @@ test('each project points to an existing scene with valid chips', () => {
       for (const language of LANGUAGES) assert.ok(chip.text[language]);
     }
   }
+});
+
+test('the story is complete in every language and covers every project', () => {
+  const ids = story.slides.map((slide) => slide.id);
+  for (const project of projects) assert.ok(ids.includes(project.id), `no slide for ${project.id}`);
+  for (const slide of story.slides) {
+    for (const language of LANGUAGES) {
+      for (const field of ['kicker', 'title', 'note', 'narration']) assert.ok(slide[field][language], `${slide.id}.${field}.${language}`);
+    }
+    assert.ok(slide.code.file && slide.code.text.trim(), `${slide.id}.code`);
+    for (const line of slide.code.text.split('\n')) assert.ok(line.length <= 46, `${slide.id}: code line too wide for phones: ${line}`);
+    for (const file of Object.values(slide.audio ?? {})) assert.match(file, /^assets\/audio\/[\w-]+\.mp3$/);
+  }
+  assert.ok(story.slides.at(-1).actions, 'the last slide offers the next steps');
 });
 
 test('contact details are well formed', () => {

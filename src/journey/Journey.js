@@ -2,6 +2,9 @@ import { interpolatePose, journeyFrame, memojiBox } from '../layout/geometry.js'
 import { releaseTarget } from './gestures.js';
 import { ProgressTween } from './ProgressTween.js';
 
+/** Past this point the camera is visually inside the screen, so the showcase starts right away. */
+const ARRIVE_AT = 0.97;
+
 export const MODE = Object.freeze({ HERO: 'hero', SHOWCASE: 'showcase' });
 
 /**
@@ -88,7 +91,7 @@ export class Journey {
       const progress = this.#tween.step(seconds, { instant: this.motion.reduced });
       // Nothing moved: skip the DOM writes entirely (saves work and battery while idle).
       if (progress !== this.#renderedProgress) this.#render(progress);
-      if (progress >= 1 && this.#tween.target >= 1 && !this.busy) this.#arrive();
+      if (progress >= ARRIVE_AT && this.#tween.target >= 1 && !this.busy) this.#arrive();
     }
     requestAnimationFrame((next) => this.#loop(next));
   }
@@ -130,6 +133,7 @@ export class Journey {
   async #arrive() {
     this.#setBusy(true);
     this.#setMode(MODE.SHOWCASE);
+    this.#tween.jumpTo(1);
     this.#render(1);
     this.laptop.setScreenOpacity(1);
     this.player.flash(0.55, 600);

@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import {
   FRAME,
   LAPTOP,
+  LID,
+  TICKET,
   heroPose,
   interpolatePose,
   isCompact,
@@ -55,6 +57,18 @@ test('showcase keeps the whole laptop inside a tall desktop window', () => {
   const viewport = { width: 1630, height: 1380 };
   const { left, right } = laptopEdges(showcasePose(viewport));
   assert.ok(left >= -1 && right <= viewport.width + 1);
+});
+
+test('showcase: the lid never slides under the project window on wide screens', () => {
+  for (const viewport of [{ width: 1440, height: 860 }, { width: 1920, height: 1080 }, { width: 1280, height: 720 }, { width: 967, height: 930 }, { width: 2560, height: 1300 }]) {
+    const pose = showcasePose(viewport);
+    const unit = viewportUnit(viewport.width, viewport.height);
+    const ticketLeft = viewport.width - (TICKET.right + TICKET.width) * unit;
+    const ticketBottom = (TICKET.top + TICKET.height) * unit;
+    const lidRight = pose.x + (LID.left + LID.width) * pose.scale;
+    const lidTop = pose.y + LAPTOP.top * pose.scale;
+    assert.ok(lidRight <= ticketLeft || lidTop >= ticketBottom, `${viewport.width}×${viewport.height}`);
+  }
 });
 
 test('lid top: open lid sits at its 2D position, a closed lid lies near the hinge', () => {

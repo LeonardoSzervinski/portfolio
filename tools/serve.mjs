@@ -21,6 +21,7 @@ const TYPES = {
   '.woff2': 'font/woff2',
   '.pdf': 'application/pdf',
   '.mp4': 'video/mp4',
+  '.mp3': 'audio/mpeg',
 };
 
 const server = createServer(async (request, response) => {

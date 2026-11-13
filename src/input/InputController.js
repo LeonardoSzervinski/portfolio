@@ -3,6 +3,8 @@ import { DragVelocity } from '../journey/gestures.js';
 const WHEEL_STEP_LOCK = 900;
 const WHEEL_THRESHOLD = 18;
 const SWIPE_THRESHOLD = 40;
+const WHEEL_IDLE = 90; // ms without wheel events that ends a scroll gesture
+const WHEEL_INTENT = 30; // pixels of scroll that count as a deliberate gesture
 const SCROLL_PER_PROGRESS = 1200; // pixels of wheel scroll for the whole journey
 const SWIPE_PER_PROGRESS = 0.9; // screen heights of swipe for the whole journey
 
@@ -12,6 +14,10 @@ const SWIPE_PER_PROGRESS = 0.9; // screen heights of swipe for the whole journey
  */
 export class InputController {
   #wheelLocked = false;
+  #wheelIdleTimer = null;
+  #wheelTravel = 0;
+  #lastWheelTime = 0;
+  #openingScroll = false;
   #touch = null;
   #dragVelocity = new DragVelocity();
 
@@ -36,7 +42,13 @@ export class InputController {
     }
     event.preventDefault();
 
+    const continuesGesture = event.timeStamp - this.#lastWheelTime < WHEEL_IDLE * 2;
+    this.#lastWheelTime = event.timeStamp;
+
     if (this.journey.inShowcase) {
+      // The tail of the scroll that opened the laptop must not skip the first project.
+      if (this.#openingScroll && continuesGesture) return;
+      this.#openingScroll = false;
       if (Math.abs(event.deltaY) < WHEEL_THRESHOLD || this.#wheelLocked) return;
       this.#wheelLocked = true;
       setTimeout(() => { this.#wheelLocked = false; }, WHEEL_STEP_LOCK);
@@ -48,6 +60,16 @@ export class InputController {
     const pixels =
       event.deltaMode === 1 ? event.deltaY * 16 : event.deltaMode === 2 ? event.deltaY * innerHeight : event.deltaY;
     this.journey.scrub(pixels / SCROLL_PER_PROGRESS);
+    this.#openingScroll = true;
+
+    // When the wheel stops, finish opening or closing instead of resting half way.
+    this.#wheelTravel += pixels;
+    clearTimeout(this.#wheelIdleTimer);
+    this.#wheelIdleTimer = setTimeout(() => {
+      const travel = this.#wheelTravel;
+      this.#wheelTravel = 0;
+      this.journey.release(Math.abs(travel) < WHEEL_INTENT ? 0 : Math.sign(travel));
+    }, WHEEL_IDLE);
   }
 
   #onTouchStart(event) {

@@ -9,6 +9,10 @@ export const LAPTOP = Object.freeze({
   lidHeight: 680,
   closedAngle: -89,  // degrees; 0 is fully open
 });
+/** Open lid, horizontally (frame units). */
+export const LID = Object.freeze({ left: 244.8, width: 950 });
+/** Project terminal window on wide screens, in --n units (mirrors styles/showcase.css). */
+export const TICKET = Object.freeze({ right: 32, width: 348, top: 98, height: 182, gap: 12 });
 export const PERSPECTIVE = Object.freeze({ distance: 4000, originY: 560 });
 export const COMPACT_BREAKPOINT = 820;
 
@@ -56,6 +60,20 @@ export function showcasePose({ width, height, ticketHeight = 0, infoHeight = 0 }
   } else {
     scale = Math.min(fit, widthFit);
     y = Math.max(top - LAPTOP.top * scale, (height - laptopHeight * scale) / 2 - LAPTOP.top * scale);
+  }
+
+  // The project window sits in the top-right corner: never let the lid slide under it.
+  const ticketLeft = width - (TICKET.right + TICKET.width + TICKET.gap) * unit;
+  const ticketBottom = (TICKET.top + TICKET.height + TICKET.gap) * unit;
+  const lidRight = width / 2 + (LID.width / 2) * scale;
+  if (lidRight > ticketLeft && y + LAPTOP.top * scale < ticketBottom) {
+    const beside = (ticketLeft - width / 2) / (LID.width / 2);
+    const below = (height - ticketBottom - 28 * unit) / laptopHeight;
+    scale = Math.min(scale, Math.max(beside, below));
+    const fitsBeside = width / 2 + (LID.width / 2) * scale <= ticketLeft + 0.5;
+    y = fitsBeside
+      ? Math.max(top - LAPTOP.top * scale, (height - laptopHeight * scale) / 2 - LAPTOP.top * scale)
+      : ticketBottom - LAPTOP.top * scale;
   }
   return { scale, x: (width - FRAME.width * scale) / 2, y };
 }

@@ -1,56 +1,142 @@
-/* Project ticket, description and previous/next controls. */
+/* Project terminal window, description and previous/next controls. */
 .ticket {
   position: absolute;
   right: calc(32 * var(--n));
   top: calc(98 * var(--n));
+  display: flex;
+  flex-direction: column;
   width: calc(348 * var(--n));
   height: calc(182 * var(--n));
-  padding: calc(26 * var(--n)) calc(34 * var(--n)) 0 calc(44 * var(--n));
-  border-radius: calc(3 * var(--n));
+  border: calc(2 * var(--n)) solid var(--ink);
+  border-radius: calc(7 * var(--n));
+  overflow: hidden;
   background: #fff;
   color: var(--ink);
-  box-shadow: 0 calc(18 * var(--n)) calc(40 * var(--n)) rgba(0, 0, 0, .28);
+  box-shadow: calc(7 * var(--n)) calc(8 * var(--n)) 0 rgba(13, 15, 14, .3);
   transform-origin: 50% 0;
   opacity: 0;
 }
 
-.ticket__hole {
-  position: absolute;
-  width: calc(21 * var(--n));
-  height: calc(21 * var(--n));
-  border-radius: 50%;
-  background: var(--blue-800);
-  box-shadow: inset 0 calc(2 * var(--n)) calc(3 * var(--n)) rgba(0, 0, 0, .35);
+/* Title bar in the style of an old desktop window: pinstripes and square buttons. */
+.ticket__bar {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  height: calc(27 * var(--n));
+  border-bottom: calc(2 * var(--n)) solid var(--ink);
+  background:
+    repeating-linear-gradient(180deg, var(--ink) 0 calc(1 * var(--n)), transparent calc(1 * var(--n)) calc(3.5 * var(--n)))
+    50% 50% / calc(100% - 14 * var(--n)) calc(15 * var(--n)) no-repeat,
+    #fff;
+  color: var(--ink);
 }
 
-.ticket__hole:nth-child(1) { left: calc(12 * var(--n)); top: calc(12 * var(--n)); }
-.ticket__hole:nth-child(2) { right: calc(12 * var(--n)); top: calc(12 * var(--n)); }
-.ticket__hole:nth-child(3) { left: calc(12 * var(--n)); bottom: calc(12 * var(--n)); }
-.ticket__hole:nth-child(4) { right: calc(12 * var(--n)); bottom: calc(12 * var(--n)); }
+.ticket__buttons {
+  position: absolute;
+  left: calc(8 * var(--n));
+  display: flex;
+  gap: calc(3 * var(--n));
+  padding: 0 calc(4 * var(--n));
+  background: #fff;
+}
 
-.ticket__title {
-  margin: 0;
-  font-family: 'Anton', Impact, sans-serif;
-  font-size: calc(50 * var(--n));
-  font-weight: 400;
-  line-height: 1;
+.ticket__buttons i {
+  position: relative;
+  width: calc(14 * var(--n));
+  height: calc(14 * var(--n));
+  border: calc(1.5 * var(--n)) solid var(--ink);
+  background: #fff;
+}
+
+.ticket__buttons i::after {
+  content: '';
+  position: absolute;
+  inset: calc(2.5 * var(--n));
+}
+
+.ticket__buttons i:nth-child(1)::after {
+  background:
+    linear-gradient(45deg, transparent 42%, var(--ink) 42% 58%, transparent 58%),
+    linear-gradient(-45deg, transparent 42%, var(--ink) 42% 58%, transparent 58%);
+}
+
+.ticket__buttons i:nth-child(2)::after {
+  top: auto;
+  height: calc(1.5 * var(--n));
+  background: var(--ink);
+}
+
+.ticket__buttons i:nth-child(3)::after {
+  border: calc(1.5 * var(--n)) solid var(--ink);
+}
+
+.ticket__name {
+  position: relative;
+  padding: 0 calc(10 * var(--n));
+  background: #fff;
+  font: 600 calc(12.5 * var(--n)) / 1 var(--mono);
   letter-spacing: -.01em;
   white-space: nowrap;
 }
 
+.ticket__body {
+  flex: 1;
+  padding: calc(13 * var(--n)) calc(18 * var(--n)) 0;
+}
+
+.ticket__prompt {
+  font: 500 calc(11.5 * var(--n)) / 1.2 var(--mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.ticket__prompt b {
+  font-weight: 600;
+  color: var(--blue-800);
+}
+
+.ticket__title {
+  margin: calc(5 * var(--n)) 0 0;
+  font-family: 'Anton', Impact, sans-serif;
+  font-size: calc(44 * var(--n));
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
 .ticket__rows {
-  margin: calc(8 * var(--n)) 0 0;
+  margin: calc(5 * var(--n)) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .ticket__rows li {
-  padding: calc(4 * var(--n)) 0 calc(3 * var(--n));
-  border-bottom: 1.5px dotted #2a2a2a;
-  font-size: calc(12 * var(--n));
-  font-weight: 700;
+  font: 600 calc(11.5 * var(--n)) / 1.5 var(--mono);
   letter-spacing: .02em;
-  text-align: right;
+  white-space: nowrap;
+}
+
+.ticket__rows li::before {
+  content: '› ';
+  color: var(--blue-700);
+}
+
+.ticket__rows li:last-child::after {
+  content: '';
+  display: inline-block;
+  width: .55em;
+  height: 1.05em;
+  margin-left: .5em;
+  vertical-align: -.18em;
+  background: var(--blue-800);
+  animation: cursor-blink 1.1s steps(2, jump-none) infinite;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
 }
 
 .project-info {

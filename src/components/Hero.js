@@ -7,7 +7,7 @@ import { EASE_SPRING } from '../core/Motion.js';
 export class Hero {
   #introStarted = false;
 
-  constructor({ container, wordmark, tagline, badge, memoji, navTags, hint, languageToggle, motion }) {
+  constructor({ container, wordmark, tagline, badge, memoji, navTags, hint, arrow, storyButton, languageToggle, motion }) {
     this.container = container;
     this.wordmark = wordmark;
     this.tagline = tagline;
@@ -15,6 +15,8 @@ export class Hero {
     this.memoji = memoji;
     this.navTags = navTags;
     this.hint = hint;
+    this.arrow = arrow;
+    this.storyButton = storyButton;
     this.languageToggle = languageToggle;
     this.motion = motion;
   }
@@ -66,7 +68,24 @@ export class Hero {
       this.motion.play(this.languageToggle, [{ opacity: 0 }, { opacity: 1 }], { duration: 600, delay: 1500 });
 
       reveal(this.hint);
-      this.motion.play(this.hint, [{ opacity: 0 }, { opacity: 0.85 }], { duration: 600, delay: 1800 });
+      this.motion.play(this.hint, [{ opacity: 0 }, { opacity: 1 }], { duration: 600, delay: 1800 });
+
+      reveal(this.storyButton);
+      this.motion.play(this.storyButton, [{ opacity: 0, transform: 'translateY(18px) scale(.9)' }, { opacity: 1, transform: 'none' }], {
+        duration: 700,
+        delay: 1650,
+        easing: EASE_SPRING,
+      });
+
+      // The chalk arrow is drawn stroke by stroke, like on a blackboard.
+      reveal(this.arrow);
+      [...this.arrow.querySelectorAll('path')].forEach((stroke, order) => {
+        this.motion.play(stroke, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+          duration: order ? 260 : 700,
+          delay: 2300 + order * 720,
+          easing: 'ease-in-out',
+        });
+      });
     });
   }
 }

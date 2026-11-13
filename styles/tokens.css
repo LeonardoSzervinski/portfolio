@@ -13,6 +13,8 @@
   --sky: linear-gradient(180deg, #3150c6 0%, #4467e0 30%, #5d7ef6 50%, #7f97f6 66%, #a9b6f4 78%, #d3cdea 88%, #efd6c6 94%, #f8ddb4 100%);
   --sky-oklab: linear-gradient(in oklab 180deg, #3150c6 0%, #4467e0 30%, #5d7ef6 50%, #7f97f6 66%, #a9b6f4 78%, #d3cdea 88%, #efd6c6 94%, #f8ddb4 100%);
 
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
   /* motion */
   --ease-out: cubic-bezier(.2, .8, .2, 1);
 

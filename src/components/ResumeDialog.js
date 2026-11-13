@@ -9,6 +9,17 @@ export class ResumeDialog extends Dialog {
     this.i18n = i18n;
   }
 
+  /** Continues the intro scene: the window grows out of the one opened on the retro desktop. */
+  entrance() {
+    return {
+      duration: 560,
+      keyframes: [
+        { opacity: 0, transform: 'translateY(4vh) scale(.6)' },
+        { opacity: 1, transform: 'none' },
+      ],
+    };
+  }
+
   onOpen() {
     const language = this.i18n.language;
     this.frame.src = `resume.html?lang=${language}&embed=1`;

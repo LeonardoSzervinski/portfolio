@@ -119,11 +119,11 @@ export const scenes = Object.freeze({
     frameDuration: 4800,
     frames: [
       {
-        image: { src: 'assets/images/pdf-insight-home.jpg', from: '50% 0%', to: '50% 0%' },
+        image: { src: 'assets/images/pdf-insight-home.webp', from: '50% 0%', to: '50% 0%' },
         html: '<div class="drop"></div><div class="pfile">PDF</div><span class="cur c2"></span>',
       },
       {
-        image: { src: 'assets/images/pdf-insight-home.jpg', from: '50% 0%', to: '50% 0%' },
+        image: { src: 'assets/images/pdf-insight-home.webp', from: '50% 0%', to: '50% 0%' },
         html: `<div class="dimw"></div><div class="proc"><b>relatorio-anual.pdf</b><small>2,4 MB · 38 páginas</small><div class="bar2"><i></i></div>
           <div class="ps"><span>Extraindo texto (pdf-parse)</span><span>Dividindo em trechos</span><span>Analisando com IA…</span></div></div>`,
       },

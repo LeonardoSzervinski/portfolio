@@ -224,3 +224,10 @@
   background: #000;
   opacity: 0;
 }
+
+/* Showcase: the laptop stands still, so its layers are painted at their real size
+   instead of being kept as stretched textures. Keeps the demos sharp. */
+.is-showcase:not(.is-busy) .scene-frame,
+.is-showcase:not(.is-busy) .laptop__lid {
+  will-change: auto;
+}

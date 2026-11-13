@@ -9,12 +9,30 @@
   .nav-tag {
     top: 12px;
     justify-content: center;
+    gap: 0;
     width: var(--tag-width);
     height: 34px;
-    padding: 0 4px;
-    font-size: min(12.5px, 3.3vw);
+    padding: 0 3px;
+    border-width: 2px;
+    border-radius: 6px;
+    font-size: min(11.5px, 3vw);
     letter-spacing: -.03em;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, .18), 0 5px 12px rgba(0, 0, 0, .16);
+    box-shadow: 2px 3px 0 rgba(13, 15, 14, .3);
+  }
+
+  /* narrow: only the close button fits */
+  .nav-tag::before {
+    width: 9px;
+    height: 9px;
+    border-width: 1.5px;
+  }
+
+  .nav-tag::after {
+    display: none;
+  }
+
+  .nav-tag span {
+    margin-left: 4px;
   }
 
   .nav-tag--studio { left: 12px; }
@@ -62,6 +80,18 @@
     z-index: -1;
   }
 
+  /* no room on the right: the arrow comes from the left instead */
+  .chalk-arrow {
+    left: auto;
+    right: 71%;
+    width: 56%;
+    transform: scaleX(-1);
+  }
+
+  .os__window {
+    --from: 2%, -24%;
+  }
+
   .brand,
   .is-showcase .brand {
     display: none;
@@ -74,25 +104,30 @@
     width: min(86vw, 360px);
     height: auto;
     margin: 0 auto;
-    padding: 22px 26px 16px 36px;
-    border-radius: 3px;
-    box-shadow: 0 14px 30px rgba(0, 0, 0, .28);
+    border-width: 2px;
+    border-radius: 7px;
+    box-shadow: 5px 6px 0 rgba(13, 15, 14, .3);
   }
 
-  .ticket__hole {
-    width: 15px;
-    height: 15px;
-    box-shadow: inset 0 2px 3px rgba(0, 0, 0, .35);
+  .ticket__bar {
+    height: 25px;
+    border-bottom-width: 2px;
+    background:
+      repeating-linear-gradient(180deg, var(--ink) 0 1px, transparent 1px 3.5px) 50% 50% / calc(100% - 14px) 14px no-repeat,
+      #fff;
   }
 
-  .ticket__hole:nth-child(1) { left: 9px; top: 9px; }
-  .ticket__hole:nth-child(2) { right: 9px; top: 9px; }
-  .ticket__hole:nth-child(3) { left: 9px; bottom: 9px; }
-  .ticket__hole:nth-child(4) { right: 9px; bottom: 9px; }
-
-  .ticket__title { font-size: 38px; }
-  .ticket__rows { margin-top: 6px; }
-  .ticket__rows li { padding: 3px 0 2px; font-size: 11px; }
+  .ticket__buttons { left: 7px; gap: 3px; padding: 0 4px; }
+  .ticket__buttons i { width: 13px; height: 13px; border-width: 1.5px; }
+  .ticket__buttons i::after { inset: 2px; }
+  .ticket__buttons i:nth-child(2)::after { top: auto; height: 1.5px; }
+  .ticket__buttons i:nth-child(3)::after { border-width: 1.5px; }
+  .ticket__name { padding: 0 9px; font-size: 12px; }
+  .ticket__body { padding: 11px 16px 12px; }
+  .ticket__prompt { font-size: 11px; }
+  .ticket__title { margin-top: 4px; font-size: 36px; }
+  .ticket__rows { margin-top: 4px; }
+  .ticket__rows li { font-size: 11px; }
 
   .project-info {
     left: 0;

@@ -1,35 +1,64 @@
-/* Top navigation tags, brand and language toggle. */
+/* Top navigation (small terminal-window buttons), brand and language toggle. */
 .nav-tag {
   position: absolute;
   top: calc(7 * var(--n));
   display: inline-flex;
   align-items: center;
+  gap: calc(4 * var(--n));
   height: calc(37 * var(--n));
-  padding: 0 calc(18 * var(--n));
+  padding: 0 calc(14 * var(--n)) 0 calc(9 * var(--n));
+  border: calc(2 * var(--n)) solid var(--ink);
+  border-radius: calc(6 * var(--n));
   background: #fff;
   color: var(--ink);
-  font-size: calc(16.5 * var(--n));
+  font-size: calc(16 * var(--n));
   font-weight: 650;
   letter-spacing: -.02em;
   white-space: nowrap;
   text-decoration: none;
-  box-shadow: 0 calc(3 * var(--n)) 0 rgba(0, 0, 0, .18), 0 calc(6 * var(--n)) calc(14 * var(--n)) rgba(0, 0, 0, .18);
+  box-shadow: calc(3 * var(--n)) calc(4 * var(--n)) 0 rgba(13, 15, 14, .3);
   transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
 }
 
+/* Decorative window buttons (close and minimise), like the project terminal. */
+.nav-tag::before,
+.nav-tag::after {
+  content: '';
+  flex: none;
+  order: -1;
+  width: calc(12 * var(--n));
+  height: calc(12 * var(--n));
+  border: calc(1.5 * var(--n)) solid var(--ink);
+}
+
+.nav-tag::before {
+  order: -2;
+  background:
+    linear-gradient(45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%),
+    linear-gradient(-45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%);
+}
+
+.nav-tag::after {
+  background: linear-gradient(var(--ink), var(--ink)) 50% 78% / 60% calc(1.5 * var(--n)) no-repeat;
+}
+
+.nav-tag span {
+  margin-left: calc(5 * var(--n));
+}
+
 .nav-tag:hover {
-  transform: translateY(calc(-2 * var(--n))) rotate(-1.5deg);
-  box-shadow: 0 calc(5 * var(--n)) 0 rgba(0, 0, 0, .22), 0 calc(10 * var(--n)) calc(18 * var(--n)) rgba(0, 0, 0, .2);
+  transform: translate(calc(-1 * var(--n)), calc(-2 * var(--n))) rotate(-1.5deg);
+  box-shadow: calc(5 * var(--n)) calc(7 * var(--n)) 0 rgba(13, 15, 14, .3);
 }
 
 .nav-tag:active {
-  transform: translateY(var(--n));
-  box-shadow: 0 var(--n) 0 rgba(0, 0, 0, .18), 0 calc(6 * var(--n)) calc(14 * var(--n)) rgba(0, 0, 0, .18);
+  transform: translate(calc(2 * var(--n)), calc(3 * var(--n)));
+  box-shadow: calc(1 * var(--n)) calc(1 * var(--n)) 0 rgba(13, 15, 14, .3);
 }
 
 .nav-tag--studio { left: calc(30 * var(--n)); }
 .nav-tag--portfolio { left: calc(233 * var(--n)); }
-.nav-tag--contacts { right: calc(160 * var(--n)); }
+.nav-tag--contacts { right: calc(180 * var(--n)); }
 .nav-tag--resume { right: calc(32 * var(--n)); }
 
 .brand {
