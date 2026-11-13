@@ -535,14 +535,6 @@
   border-bottom: calc(2 * var(--px)) solid var(--ink);
 }
 
-.os__avatar--small {
-  flex: none;
-  width: 4.6em;
-  height: 5.6em;
-  border-color: var(--ink);
-  box-shadow: none;
-}
-
 .os__head strong {
   display: block;
   font: 800 1.9em / .95 'Inter Tight', sans-serif;
