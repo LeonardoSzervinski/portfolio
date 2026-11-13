@@ -324,7 +324,7 @@
 /* ----- screen ----- */
 .os {
   position: absolute;
-  inset: 0;
+  inset: var(--bezel) var(--bezel) calc(2.2 * var(--bezel));
   overflow: hidden;
   background: #0d1233;
   color: #fff;
@@ -630,6 +630,8 @@
 /* ----- timeline (4.6 s, see ResumeReveal.js) ----- */
 /* will-change: the computer is painted once at full size and only moved by the GPU */
 .reveal.is-playing .pc { will-change: transform; animation: pc-dive 1.05s .25s cubic-bezier(.65, 0, .2, 1) both; }
+/* once inside the screen the case is off-screen: drop its 3D sides altogether */
+.reveal.is-playing .pc__side { animation: os-hide 0s 1.35s both; }
 .reveal.is-playing .os__password span { animation: os-wipe .5s 1.2s steps(8) both; }
 .reveal.is-playing .os__login .os__loading i { animation: os-wipe .65s 1.75s steps(11) both; }
 .reveal.is-playing .os__login { animation: os-hide 0s 2.5s both; }
