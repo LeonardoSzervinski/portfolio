@@ -63,7 +63,7 @@ const acCode = codeLines([
   [''],
   ['cc', '# IA: entende e reescreve, com resposta em JSON'],
   ['', '<span class="cv">resposta</span> = <span class="cv">cliente</span>.models.<span class="cf">generate_content</span>('],
-  ['', '    <span class="cv">model</span>=<span class="cs">"gemini-flash-latest"</span>,'],
+  ['', '    <span class="cv">model</span>=<span class="cs">"gemini-3.5-flash"</span>,'],
   ['', '    <span class="cv">contents</span>=<span class="cf">montar_prompt</span>(<span class="cv">anuncio</span>),'],
   ['', '    <span class="cv">config</span>={<span class="cs">"response_schema"</span>: <span class="ct">AnaliseIA</span>},'],
   ['', ')'],
