@@ -12,17 +12,16 @@ export const story = Object.freeze({
       image: 'assets/images/memoji.webp',
       kicker: { pt: '~/sobre $ whoami', en: '~/about $ whoami' },
       title: { pt: 'ESTE É O LEONARDO', en: 'THIS IS LEONARDO' },
-      note: { pt: 'dev full-stack', en: 'full-stack dev' },
+      note: { pt: 'dev python e IA', en: 'python & AI dev' },
       narration: {
-        pt: 'Este é o Leonardo, desenvolvedor full-stack de Brasília. Em poucos segundos, você vai ver o que ele constrói.',
-        en: 'This is Leonardo, a full-stack developer from Brasília. In a few seconds, you’ll see what he builds.',
+        pt: 'Este é o Leonardo, engenheiro de software de Brasília, com foco em Python e IA. Em poucos segundos, você vai ver o que ele constrói.',
+        en: 'This is Leonardo, a software engineer from Brasília focused on Python and AI. In a few seconds, you’ll see what he builds.',
       },
-      audio: { pt: 'assets/audio/story-hello-pt.mp3' },
       code: {
         file: 'leonardo.ts',
         text: `// quem é o Leonardo
 const leonardo = {
-  cargo: 'dev full-stack',
+  cargo: 'engenheiro de software',
   cidade: 'Brasília – DF',
   idade: 23,
   foco: ['APIs', 'dados', 'testes'],
