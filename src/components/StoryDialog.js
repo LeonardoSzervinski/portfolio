@@ -44,7 +44,9 @@ export class StoryDialog extends Dialog {
     this.slidesHost.replaceChildren(...slides.map((slide) => this.#build(slide)));
     this.progressHost.replaceChildren(...slides.map(() => createElement('i')));
     this.#setMuted(this.#muted);
-    this.go(0);
+    // Dialog.open() only marks the dialog as open after onOpen() returns, and go() ignores
+    // a closed dialog. Starting on the next microtask lets slides without audio play too.
+    queueMicrotask(() => this.go(0));
   }
 
   onClose() {
