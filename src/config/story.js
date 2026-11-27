@@ -47,21 +47,47 @@ const formacao = [
   'Eng. de Software — UCB',
 ];
 
-const foco = ['Python', 'IA generativa',
-  'SQL'];
+const stack = ['TypeScript', 'PHP',
+  'Python', 'SQL'];
 
 while (true) aprender(construindo);`,
       },
     },
     {
+      id: 'bb-billing',
+      kicker: { pt: 'projeto 01 / 03', en: 'project 01 / 03' },
+      title: { pt: 'COBRANÇA BB', en: 'BB BILLING' },
+      note: { pt: 'integração bancária', en: 'bank integration' },
+      narration: {
+        pt: 'Primeiro projeto: ele integrou a API de cobranças do Banco do Brasil. Autenticação OAuth2, boletos emitidos e tudo coberto por testes.',
+        en: 'First project: he integrated Banco do Brasil’s billing API. OAuth2 authentication, bank slips issued and everything covered by tests.',
+      },
+      audio: { pt: 'assets/audio/story-bb-billing-pt.mp3' },
+      code: {
+        file: 'ClienteBB.php',
+        text: `// API de Cobranças v2 · OAuth2
+public function obterToken(): string
+{
+    $token = $this->cache->valido();
+    if ($token !== null) return $token;
+
+    $resposta = $this->executar([
+        'grant_type' => 'client_credentials',
+    ]);
+    return $resposta['access_token'];
+}`,
+      },
+    },
+    {
       id: 'pdf-insight',
-      kicker: { pt: 'projeto 01 / 02', en: 'project 01 / 02' },
+      kicker: { pt: 'projeto 02 / 03', en: 'project 02 / 03' },
       title: { pt: 'PDF IA', en: 'PDF AI' },
       note: { pt: 'entra PDF, sai resumo', en: 'PDF in, summary out' },
       narration: {
-        pt: 'Primeiro projeto: o PDF IA. Você envia um PDF, e a inteligência artificial devolve resumo, pontos principais e insights.',
-        en: 'First project: PDF AI. You upload a PDF, and artificial intelligence returns a summary, key points and insights.',
+        pt: 'Segundo: o PDF IA. Você envia um PDF, e a inteligência artificial devolve resumo, pontos principais e insights.',
+        en: 'Second: PDF AI. You upload a PDF, and artificial intelligence returns a summary, key points and insights.',
       },
+      audio: { pt: 'assets/audio/story-pdf-insight-pt.mp3' },
       code: {
         file: 'analisar.ts',
         text: `// PDF entra, resumo sai
@@ -77,13 +103,14 @@ export async function analisar(pdf: File) {
     },
     {
       id: 'oracle-apex',
-      kicker: { pt: 'projeto 02 / 02', en: 'project 02 / 02' },
+      kicker: { pt: 'projeto 03 / 03', en: 'project 03 / 03' },
       title: { pt: 'ORACLE APEX', en: 'ORACLE APEX' },
       note: { pt: 'a regra mora no banco', en: 'the rule lives in the database' },
       narration: {
-        pt: 'Segundo: um cadastro de produtos em Oracle APEX, com a regra de preço garantida por uma trigger em PL/SQL.',
-        en: 'Second: a product catalog in Oracle APEX, with the price rule enforced by a PL/SQL trigger.',
+        pt: 'Terceiro: um cadastro de produtos em Oracle APEX, com a regra de preço garantida por uma trigger em PL/SQL.',
+        en: 'Third: a product catalog in Oracle APEX, with the price rule enforced by a PL/SQL trigger.',
       },
+      audio: { pt: 'assets/audio/story-oracle-apex-pt.mp3' },
       code: {
         file: 'trg_preco.sql',
         text: `-- a regra mora no banco

@@ -9,6 +9,21 @@ const GITHUB = 'https://github.com/LeonardoSzervinski';
  */
 export const projects = Object.freeze([
   {
+    id: 'bb-billing',
+    title: 'COBRANÇA BB',
+    key: { pt: '// api de cobranças bb', en: '// bb billing api' },
+    facts: {
+      pt: ['PHP 8 · SQLITE', 'API REST · OAUTH2', '2026'],
+      en: ['PHP 8 · SQLITE', 'REST API · OAUTH2', '2026'],
+    },
+    summary: {
+      pt: '— teste técnico: mini gestor de boletos que emite, consulta, lista e baixa boletos na API de Cobranças v2 do Banco do Brasil (homologação), com testes em PHPUnit.',
+      en: '— technical test: a small billing app that issues, checks, lists and cancels bank slips through Banco do Brasil’s Billing API v2 (sandbox), covered by PHPUnit tests.',
+    },
+    links: [{ label: 'linkPrivate' }],
+    media: { type: 'scene', scene: 'bbBilling' },
+  },
+  {
     id: 'pdf-insight',
     title: 'PDF IA',
     key: { pt: '// pdf insight ai', en: '// pdf insight ai' },
