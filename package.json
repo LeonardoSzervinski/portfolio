@@ -2,7 +2,7 @@
   "name": "leonardo-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Interactive portfolio of Leonardo Olivieri Szervinski, full-stack developer.",
+  "description": "Interactive portfolio of Leonardo Olivieri Szervinski, software engineer focused on Python and AI.",
   "type": "module",
   "engines": {
     "node": ">=20"
