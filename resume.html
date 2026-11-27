@@ -36,15 +36,29 @@
     <li><b><span data-l="pt">Foco atual</span><span data-l="en">Current focus</span>:</b> <span data-l="pt">Python e integração com APIs de IA generativa (Google Gemini, APIs compatíveis com OpenAI, Ollama)</span><span data-l="en">Python and generative AI API integration (Google Gemini, OpenAI-compatible APIs, Ollama)</span></li>
     <li><b><span data-l="pt">Linguagens vistas na graduação</span><span data-l="en">Languages from my degree</span>:</b> JavaScript, TypeScript, Java, C, SQL</li>
     <li><b><span data-l="pt">Front-end</span><span data-l="en">Front-end</span>:</b> <span data-l="pt">HTML, CSS, JavaScript, TypeScript, React (básico)</span><span data-l="en">HTML, CSS, JavaScript, TypeScript, React (basic)</span></li>
-    <li><b><span data-l="pt">Back-end</span><span data-l="en">Back-end</span>:</b> <span data-l="pt">Node.js (básico), consumo de APIs REST</span><span data-l="en">Node.js (basic), consuming REST APIs</span></li>
+    <li><b><span data-l="pt">Back-end</span><span data-l="en">Back-end</span>:</b> <span data-l="pt">Node.js (básico), PHP, APIs REST, OAuth2</span><span data-l="en">Node.js (basic), PHP, REST APIs, OAuth2</span></li>
     <li><b><span data-l="pt">Banco de dados</span><span data-l="en">Databases</span>:</b> <span data-l="pt">SQL (consultas básicas), Oracle APEX</span><span data-l="en">SQL (basic queries), Oracle APEX</span></li>
     <li><b><span data-l="pt">Ferramentas</span><span data-l="en">Tools</span>:</b> Git, GitHub, Vercel</li>
-    <li><b><span data-l="pt">Testes</span><span data-l="en">Testing</span>:</b> Cypress, BDD (Gherkin)</li>
+    <li><b><span data-l="pt">Testes</span><span data-l="en">Testing</span>:</b> Cypress, BDD (Gherkin), PHPUnit</li>
     <li><b><span data-l="pt">Engenharia de software</span><span data-l="en">Software engineering</span>:</b> <span data-l="pt">Orientação a objetos, Clean Code, Design Patterns, UX/UI, Scrum, Kanban</span><span data-l="en">Object-oriented programming, Clean Code, Design Patterns, UX/UI, Scrum, Kanban</span></li>
     <li><b><span data-l="pt">Idiomas</span><span data-l="en">Languages</span>:</b> <span data-l="pt">Português (nativo); inglês intermediário (leitura de documentação técnica)</span><span data-l="en">Portuguese (native); English (intermediate, reading technical documentation)</span></li>
   </ul>
 
   <h2><span data-l="pt">Projetos</span><span data-l="en">Projects</span></h2>
+  <div class="item">
+    <div class="head"><b><span data-l="pt">Integração com a API de Cobranças do Banco do Brasil</span><span data-l="en">Banco do Brasil Billing API Integration</span></b><em><span data-l="pt">Teste técnico · 2026</span><span data-l="en">Technical assessment · 2026</span></em></div>
+    <div class="meta"><span data-l="pt">PHP 8, OAuth2, API REST, SQLite, PHPUnit</span><span data-l="en">PHP 8, OAuth2, REST API, SQLite, PHPUnit</span></div>
+    <ul data-l="pt">
+      <li>Integração com a API de Cobranças v2 do Banco do Brasil em ambiente de homologação: registro, consulta, listagem com filtros e baixa de boletos.</li>
+      <li>Autenticação OAuth2 (client credentials) com token armazenado em cache e reutilizado durante sua validade, reduzindo chamadas de autenticação.</li>
+      <li>Tratamento de erros que diferencia rejeições da API de falhas temporárias de comunicação, coberto por testes automatizados em PHPUnit.</li>
+    </ul>
+    <ul data-l="en">
+      <li>Integration with Banco do Brasil’s Billing API v2 in the sandbox environment: registration, retrieval, filtered listing and write-off of bank slips (boletos).</li>
+      <li>OAuth2 authentication (client credentials) with the access token cached and reused while valid, reducing authentication calls.</li>
+      <li>Error handling that distinguishes API rejections from temporary communication failures, covered by automated PHPUnit tests.</li>
+    </ul>
+  </div>
   <div class="item">
     <div class="head"><b>PDF Insight AI</b><em>2026</em></div>
     <div class="meta"><span data-l="pt">Next.js, TypeScript, APIs de LLM, Vercel</span><span data-l="en">Next.js, TypeScript, LLM APIs, Vercel</span> · <a href="https://github.com/LeonardoSzervinski/pdf-insight-ai">github.com/LeonardoSzervinski/pdf-insight-ai</a></div>
