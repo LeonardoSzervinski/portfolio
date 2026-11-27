@@ -56,7 +56,7 @@ while (true) aprender(construindo);`,
     },
     {
       id: 'bb-billing',
-      kicker: { pt: 'projeto 01 / 03', en: 'project 01 / 03' },
+      kicker: { pt: 'projeto 01 / 04', en: 'project 01 / 04' },
       title: { pt: 'COBRANÇA BB', en: 'BB BILLING' },
       note: { pt: 'integração bancária', en: 'bank integration' },
       narration: {
@@ -81,7 +81,7 @@ public function obterToken(): string
     },
     {
       id: 'pdf-insight',
-      kicker: { pt: 'projeto 02 / 03', en: 'project 02 / 03' },
+      kicker: { pt: 'projeto 02 / 04', en: 'project 02 / 04' },
       title: { pt: 'PDF IA', en: 'PDF AI' },
       note: { pt: 'entra PDF, sai resumo', en: 'PDF in, summary out' },
       narration: {
@@ -104,7 +104,7 @@ export async function analisar(pdf: File) {
     },
     {
       id: 'oracle-apex',
-      kicker: { pt: 'projeto 03 / 03', en: 'project 03 / 03' },
+      kicker: { pt: 'projeto 03 / 04', en: 'project 03 / 04' },
       title: { pt: 'ORACLE APEX', en: 'ORACLE APEX' },
       note: { pt: 'a regra mora no banco', en: 'the rule lives in the database' },
       narration: {
@@ -124,6 +124,25 @@ BEGIN
       'Preço deve ser maior que zero');
   END IF;
 END;`,
+      },
+    },
+    {
+      id: 'anuncio-certo',
+      kicker: { pt: 'projeto 04 / 04', en: 'project 04 / 04' },
+      title: { pt: 'ANÚNCIO CERTO', en: 'ANÚNCIO CERTO' },
+      note: { pt: 'regras + IA contra golpes', en: 'rules + AI against scams' },
+      narration: {
+        pt: 'Por fim, o mais recente: o Anúncio Certo. Em Python, ele dá nota a anúncios de classificados, aponta sinais de golpe e usa IA para sugerir um anúncio melhor.',
+        en: 'Last, the newest one: Anúncio Certo. Built in Python, it scores classified ads, flags scam signals and uses AI to suggest a better listing.',
+      },
+      code: {
+        file: 'analisar.py',
+        text: `# regras + IA
+sinais = detectar_sinais(anuncio)
+risco = nivel_de_risco(sinais)
+
+analise = analisar_com_ia(anuncio)
+print(analise.titulo_sugerido)`,
       },
     },
     {

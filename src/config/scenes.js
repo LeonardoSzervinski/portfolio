@@ -48,6 +48,28 @@ const bbCode = codeLines([
   ['', '}'],
 ]);
 
+/* ---------- Anúncio Certo ---------- */
+const acHeader = '<h5 class="ac-t">🏷️ Anúncio Certo</h5><p class="ac-sub">Cole um anúncio de classificados: nota, sinais de golpe e versão melhor com IA.</p>';
+
+const acForm = `
+  <div class="ac-f"><span>Título</span><div>IPHONE 15 PRO MAX BARATO URGENTE</div></div>
+  <div class="ac-f"><span>Descrição</span><div class="ac-area">Vendo iphone novo na caixa. Preciso vender rápido, só hoje. Pagamento via pix antecipado para reservar. Chama no whats…</div></div>
+  <div class="ac-row"><div class="ac-f"><span>Preço (R$)</span><div>2.500,00</div></div><div class="ac-f"><span>Referência (R$)</span><div>6.500,00</div></div></div>`;
+
+const acCode = codeLines([
+  ['cc', '# regras: rápidas, grátis e sempre iguais'],
+  ['', '<span class="cv">sinais</span> = <span class="cf">detectar_sinais</span>(<span class="cv">titulo</span> + <span class="cv">descricao</span>)'],
+  ['', '<span class="cv">risco</span> = <span class="cf">nivel_de_risco</span>(<span class="cv">sinais</span>)'],
+  [''],
+  ['cc', '# IA: entende e reescreve, com resposta em JSON'],
+  ['', '<span class="cv">resposta</span> = <span class="cv">cliente</span>.models.<span class="cf">generate_content</span>('],
+  ['', '    <span class="cv">model</span>=<span class="cs">"gemini-flash-latest"</span>,'],
+  ['', '    <span class="cv">contents</span>=<span class="cf">montar_prompt</span>(<span class="cv">anuncio</span>),'],
+  ['', '    <span class="cv">config</span>={<span class="cs">"response_schema"</span>: <span class="ct">AnaliseIA</span>},'],
+  ['', ')'],
+  ['', '<span class="ck">return</span> <span class="ct">AnaliseIA</span>.<span class="cf">model_validate_json</span>(<span class="cv">resposta</span>.text)'],
+]);
+
 /* ---------- Oracle APEX ---------- */
 const oracleNav = (active) => sidebar('Produtos', ['Home', 'Gerenciar Categorias', 'Gerenciar Produtos'], active, 'APEX · ORACLE SQL');
 
@@ -72,6 +94,38 @@ const oracleCode = codeLines([
 ]);
 
 export const scenes = Object.freeze({
+  anuncioCerto: {
+    accent: '#ff4b4b',
+    background: 'linear-gradient(135deg,#3b0d1f 0%,#c2334d 55%,#ffb4a8 120%)',
+    address: 'anuncio-certo · streamlit',
+    frameDuration: 4600,
+    frames: [
+      { html: `<div class="ac">${acHeader}${acForm}<div class="ac-btn">Analisar anúncio</div></div>` },
+      {
+        html: `<div class="ac">${acHeader}<div class="ac-m"><div><span>Qualidade do anúncio</span><b>75/100</b></div><div class="bad"><span>Risco de golpe</span><b>ALTO</b></div></div>
+          <h6 class="ac-h">⚠️ Sinais de golpe</h6><ul class="ac-l"><li>Pede pagamento antes de ver o produto</li><li>Tenta levar a conversa para fora da plataforma</li><li>Cria urgência para decidir sem pensar</li><li>Preço 38% da referência informada</li></ul></div>`,
+      },
+      {
+        html: `<div class="ac">${acHeader}<h6 class="ac-h">🤖 Análise com IA</h6>
+          <p class="ac-p"><b>Categoria:</b> eletrônico · <b>Estado:</b> novo</p>
+          <p class="ac-p"><b>O comprador vai perguntar:</b> armazenamento, nota fiscal</p>
+          <div class="ac-warn">IA: pede Pix antecipado e o preço está muito abaixo do mercado.</div>
+          <p class="ac-p"><b>Título sugerido</b></p><div class="ac-c">iPhone 15 Pro Max novo na caixa</div></div>`,
+      },
+      { html: `<div class="code">${acCode}<span class="tests">✓ testes pytest · GitHub Actions</span></div>` },
+    ],
+    chips: [
+      { frame: 0, text: { pt: 'Python + Streamlit', en: 'Python + Streamlit' } },
+      { frame: 0, text: { pt: 'cole o anúncio', en: 'paste the listing' } },
+      { frame: 1, text: { pt: 'nota de qualidade', en: 'quality score' } },
+      { frame: 1, text: { pt: 'sinais de golpe', en: 'scam signals' } },
+      { frame: 2, text: { pt: 'Google Gemini', en: 'Google Gemini' } },
+      { frame: 2, text: { pt: 'reescrita sem inventar', en: 'rewrite without making things up' } },
+      { frame: 3, text: { pt: 'regras + IA', en: 'rules + AI' } },
+      { frame: 3, text: { pt: 'JSON validado (Pydantic)', en: 'validated JSON (Pydantic)' } },
+    ],
+  },
+
   bbBilling: {
     accent: '#5b7cf6',
     background: 'linear-gradient(135deg,#1d2a6b 0%,#3b5bdb 55%,#36c2a5 120%)',

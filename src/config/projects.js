@@ -9,6 +9,21 @@ const GITHUB = 'https://github.com/LeonardoSzervinski';
  */
 export const projects = Object.freeze([
   {
+    id: 'anuncio-certo',
+    title: 'ANÚNCIO CERTO',
+    key: { pt: '// anúncios com ia', en: '// ai listing checker' },
+    facts: {
+      pt: ['PYTHON · STREAMLIT', 'IA · GOOGLE GEMINI', '2026'],
+      en: ['PYTHON · STREAMLIT', 'AI · GOOGLE GEMINI', '2026'],
+    },
+    summary: {
+      pt: '— analisa anúncios de classificados: nota de qualidade, sinais de golpe (como Pix antecipado) e uma versão melhor do anúncio escrita pela IA, com regras + IA e testes automatizados.',
+      en: '— analyzes classified ads: a quality score, scam signals (such as upfront payment) and a better version of the ad written by AI, combining rules with AI and automated tests.',
+    },
+    links: [{ label: 'linkCode', href: `${GITHUB}/anuncio-certo` }],
+    media: { type: 'scene', scene: 'anuncioCerto' },
+  },
+  {
     id: 'bb-billing',
     title: 'COBRANÇA BB',
     key: { pt: '// api de cobranças bb', en: '// bb billing api' },
